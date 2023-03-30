@@ -1,0 +1,111 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="eventPlan">
+      <h2 data-cy="eventPlanDetailsHeading">
+        <span>{{ eventPlan.eventNAme }}</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <!--        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ eventPlan.id }}</span>
+        </dd>-->
+        <dt>
+          <!--<span jhiTranslate="hikesApp.eventPlan.hikeMainImage">Hike Main Image</span>-->
+        </dt>
+        <dd>
+          <div *ngIf="eventPlan.hikeMainImage">
+            <a (click)="openFile(eventPlan.hikeMainImage, eventPlan.hikeMainImageContentType)">
+              <img
+                [src]="'data:' + eventPlan.hikeMainImageContentType + ';base64,' + eventPlan.hikeMainImage"
+                style="max-width: 100%"
+                alt="eventPlan image"
+              />
+            </a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.eventPlan.eventDate">Event Date</span></dt>
+        <dd>
+          <span>{{ eventPlan.eventDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.eventPlan.eventStartTime">Event Start Time</span></dt>
+        <dd>
+          <span>{{ eventPlan.eventStartTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.eventPlan.eventEndTime">Event End Time</span></dt>
+        <dd>
+          <span>{{ eventPlan.eventEndTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt>
+          <!--          <span jhiTranslate="hikesApp.eventPlan.komootMap">Komoot Map</span>-->
+        </dt>
+        <dd>
+          <span><iframe [src]="komootUrl" width="100%" height="700" frameborder="0" scrolling="no"></iframe></span>
+        </dd>
+        <!--<dt><span jhiTranslate="hikesApp.eventPlan.eventNAme">Event N Ame</span></dt>
+        <dd>
+          <span>{{ eventPlan.eventNAme }}</span>
+        </dd>-->
+        <dt><span jhiTranslate="hikesApp.eventPlan.travelSchedule">Travel Schedule</span></dt>
+        <dd>
+          <div [innerHTML]="eventPlan.travelSchedule"></div>
+        </dd>
+        <dt>
+          <!--          <span jhiTranslate="hikesApp.eventPlan.description">Description</span>-->
+        </dt>
+        <dd>
+          <div [innerHTML]="eventPlan.description"></div>
+        </dd>
+
+        <!--<dt><span jhiTranslate="hikesApp.eventPlan.hikeHighlightImage1">Hike Highlight Image 1</span></dt>
+        <dd>
+          <div *ngIf="eventPlan.hikeHighlightImage1">
+            <a (click)="openFile(eventPlan.hikeHighlightImage1, eventPlan.hikeHighlightImage1ContentType)">
+              <img
+                [src]="'data:' + eventPlan.hikeHighlightImage1ContentType + ';base64,' + eventPlan.hikeHighlightImage1"
+                style="max-width: 100%"
+                alt="eventPlan image"
+              />
+            </a>
+
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.eventPlan.hikeHighlightImage1Description">Hike Highlight Image 1 Description</span></dt>
+        <dd>
+          <span>{{ eventPlan.hikeHighlightImage1Description }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.eventPlan.hikeHighlightImage2">Hike Highlight Image 2</span></dt>
+        <dd>
+          <div *ngIf="eventPlan.hikeHighlightImage2">
+            <a (click)="openFile(eventPlan.hikeHighlightImage2, eventPlan.hikeHighlightImage2ContentType)">
+              <img
+                [src]="'data:' + eventPlan.hikeHighlightImage2ContentType + ';base64,' + eventPlan.hikeHighlightImage2"
+                style="max-width: 100%"
+                alt="eventPlan image"
+              />
+            </a>
+
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.eventPlan.hikeHighlightImage2Description">Hike Highlight Image 2 Description</span></dt>
+        <dd>
+          <span>{{ eventPlan.hikeHighlightImage2Description }}</span>
+        </dd>-->
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button" [routerLink]="['/event-plan', eventPlan.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

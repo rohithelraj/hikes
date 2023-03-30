@@ -14,7 +14,15 @@
     <link rel="stylesheet" href="content/css/loading.css" />
     <!-- jhipster-needle-add-resources-to-root - JHipster will add new resources here -->
   </head>
-  <body>
+  <style>
+    .main-bg {
+      background-image: url('mainBackgroundImage.png');
+    }
+    .jh-card {
+      background: none;
+    }
+  </style>
+  <body class="main-bg">
     <!--[if lt IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve
@@ -23,20 +31,20 @@
     <![endif]-->
     <jhi-main>
       <div class="app-loading">
-        <div class="lds-pacman">
-          <div>
+        <div class="lds-pacman" style="background: none !important">
+          <div style="background: none !important">
             <div></div>
             <div></div>
             <div></div>
           </div>
-          <div>
+          <div style="background: none !important">
             <div></div>
             <div></div>
             <div></div>
           </div>
         </div>
       </div>
-      <div class="app-loading">
+      <div class="app-loading" style="background: none">
         <div id="jhipster-error" style="display: none">
           <!-- This content is for troubleshooting purpose and will be removed when app renders -->
           <h1>An error has occurred :-(</h1>

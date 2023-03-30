@@ -1,0 +1,327 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-event-plan-heading" data-cy="EventPlanCreateUpdateHeading" jhiTranslate="hikesApp.eventPlan.home.createOrEditLabel">
+        Create or edit a Event Plan
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.eventPlan.eventDate" for="field_eventDate">Event Date</label>
+          <div class="input-group">
+            <input
+              id="field_eventDate"
+              data-cy="eventDate"
+              type="text"
+              class="form-control"
+              name="eventDate"
+              ngbDatepicker
+              #eventDateDp="ngbDatepicker"
+              formControlName="eventDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="eventDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('eventDate')!.invalid && (editForm.get('eventDate')!.dirty || editForm.get('eventDate')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('eventDate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.eventPlan.eventStartTime" for="field_eventStartTime">Event Start Time</label>
+          <div class="d-flex">
+            <input
+              id="field_eventStartTime"
+              data-cy="eventStartTime"
+              type="datetime-local"
+              class="form-control"
+              name="eventStartTime"
+              formControlName="eventStartTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.eventPlan.eventEndTime" for="field_eventEndTime">Event End Time</label>
+          <div class="d-flex">
+            <input
+              id="field_eventEndTime"
+              data-cy="eventEndTime"
+              type="datetime-local"
+              class="form-control"
+              name="eventEndTime"
+              formControlName="eventEndTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.eventPlan.komootMap" for="field_komootMap">Komoot Map</label>
+          <input type="text" class="form-control" name="komootMap" id="field_komootMap" data-cy="komootMap" formControlName="komootMap" />
+          <div *ngIf="editForm.get('komootMap')!.invalid && (editForm.get('komootMap')!.dirty || editForm.get('komootMap')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('komootMap')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.eventPlan.eventNAme" for="field_eventNAme">Event N Ame</label>
+          <input type="text" class="form-control" name="eventNAme" id="field_eventNAme" data-cy="eventNAme" formControlName="eventNAme" />
+          <div *ngIf="editForm.get('eventNAme')!.invalid && (editForm.get('eventNAme')!.dirty || editForm.get('eventNAme')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('eventNAme')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.eventPlan.description" for="field_description">Description</label>
+          <textarea
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.eventPlan.travelSchedule" for="field_travelSchedule">Travel Schedule</label>
+          <input
+            type="text"
+            class="form-control"
+            name="travelSchedule"
+            id="field_travelSchedule"
+            data-cy="travelSchedule"
+            formControlName="travelSchedule"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.eventPlan.hikeMainImage" for="field_hikeMainImage">Hike Main Image</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('hikeMainImageContentType')!.value + ';base64,' + editForm.get('hikeMainImage')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('hikeMainImage')!.value"
+              alt="eventPlan image"
+            />
+            <div *ngIf="editForm.get('hikeMainImage')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('hikeMainImageContentType')!.value }}, {{ byteSize(editForm.get('hikeMainImage')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('hikeMainImage', 'hikeMainImageContentType', 'file_hikeMainImage')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_hikeMainImage"
+              data-cy="hikeMainImage"
+              (change)="setFileData($event, 'hikeMainImage', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="hikeMainImage"
+            id="field_hikeMainImage"
+            data-cy="hikeMainImage"
+            formControlName="hikeMainImage"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="hikeMainImageContentType"
+            id="field_hikeMainImageContentType"
+            formControlName="hikeMainImageContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.eventPlan.hikeHighlightImage1" for="field_hikeHighlightImage1"
+            >Hike Highlight Image 1</label
+          >
+          <div>
+            <img
+              [src]="
+                'data:' + editForm.get('hikeHighlightImage1ContentType')!.value + ';base64,' + editForm.get('hikeHighlightImage1')!.value
+              "
+              style="max-height: 100px"
+              *ngIf="editForm.get('hikeHighlightImage1')!.value"
+              alt="eventPlan image"
+            />
+            <div *ngIf="editForm.get('hikeHighlightImage1')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('hikeHighlightImage1ContentType')!.value }},
+                {{ byteSize(editForm.get('hikeHighlightImage1')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('hikeHighlightImage1', 'hikeHighlightImage1ContentType', 'file_hikeHighlightImage1')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_hikeHighlightImage1"
+              data-cy="hikeHighlightImage1"
+              (change)="setFileData($event, 'hikeHighlightImage1', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="hikeHighlightImage1"
+            id="field_hikeHighlightImage1"
+            data-cy="hikeHighlightImage1"
+            formControlName="hikeHighlightImage1"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="hikeHighlightImage1ContentType"
+            id="field_hikeHighlightImage1ContentType"
+            formControlName="hikeHighlightImage1ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="hikesApp.eventPlan.hikeHighlightImage1Description"
+            for="field_hikeHighlightImage1Description"
+            >Hike Highlight Image 1 Description</label
+          >
+          <textarea
+            type="text"
+            class="form-control"
+            name="hikeHighlightImage1Description"
+            id="field_hikeHighlightImage1Description"
+            data-cy="hikeHighlightImage1Description"
+            formControlName="hikeHighlightImage1Description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.eventPlan.hikeHighlightImage2" for="field_hikeHighlightImage2"
+            >Hike Highlight Image 2</label
+          >
+          <div>
+            <img
+              [src]="
+                'data:' + editForm.get('hikeHighlightImage2ContentType')!.value + ';base64,' + editForm.get('hikeHighlightImage2')!.value
+              "
+              style="max-height: 100px"
+              *ngIf="editForm.get('hikeHighlightImage2')!.value"
+              alt="eventPlan image"
+            />
+            <div *ngIf="editForm.get('hikeHighlightImage2')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('hikeHighlightImage2ContentType')!.value }},
+                {{ byteSize(editForm.get('hikeHighlightImage2')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('hikeHighlightImage2', 'hikeHighlightImage2ContentType', 'file_hikeHighlightImage2')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_hikeHighlightImage2"
+              data-cy="hikeHighlightImage2"
+              (change)="setFileData($event, 'hikeHighlightImage2', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="hikeHighlightImage2"
+            id="field_hikeHighlightImage2"
+            data-cy="hikeHighlightImage2"
+            formControlName="hikeHighlightImage2"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="hikeHighlightImage2ContentType"
+            id="field_hikeHighlightImage2ContentType"
+            formControlName="hikeHighlightImage2ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="hikesApp.eventPlan.hikeHighlightImage2Description"
+            for="field_hikeHighlightImage2Description"
+            >Hike Highlight Image 2 Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="hikeHighlightImage2Description"
+            id="field_hikeHighlightImage2Description"
+            data-cy="hikeHighlightImage2Description"
+            formControlName="hikeHighlightImage2Description"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,228 @@
+<div>
+  <h2 id="page-heading" data-cy="EventPlanHeading">
+    <span jhiTranslate="hikesApp.eventPlan.home.title">Event Plans</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hikesApp.eventPlan.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        *jhiHasAnyAuthority="'ROLE_ADMIN'"
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-event-plan"
+        [routerLink]="['/event-plan/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hikesApp.eventPlan.home.createLabel"> Create a new Event Plan </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="eventPlans?.length === 0">
+    <span jhiTranslate="hikesApp.eventPlan.home.notFound">No Event Plans found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="eventPlans && eventPlans.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <!--<th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>-->
+          <th scope="col" jhiSortBy="eventDate">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.eventPlan.eventDate">Event Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <!--          <th scope="col" jhiSortBy="eventStartTime">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.eventPlan.eventStartTime">Event Start Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="eventEndTime">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.eventPlan.eventEndTime">Event End Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>-->
+          <!--          <th scope="col" jhiSortBy="komootMap">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.eventPlan.komootMap">Komoot Map</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>-->
+          <th scope="col" jhiSortBy="eventNAme">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.eventPlan.eventNAme">Event Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <!--          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.eventPlan.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="travelSchedule">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.eventPlan.travelSchedule">Travel Schedule</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="hikeMainImage">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.eventPlan.hikeMainImage">Hike Main Image</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="hikeHighlightImage1">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.eventPlan.hikeHighlightImage1">Hike Highlight Image 1</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="hikeHighlightImage1Description">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.eventPlan.hikeHighlightImage1Description">Hike Highlight Image 1 Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="hikeHighlightImage2">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.eventPlan.hikeHighlightImage2">Hike Highlight Image 2</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="hikeHighlightImage2Description">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.eventPlan.hikeHighlightImage2Description">Hike Highlight Image 2 Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>-->
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let eventPlan of eventPlans; trackBy: trackId" data-cy="entityTable">
+          <!-- <td>
+            <a [routerLink]="['/event-plan', eventPlan.id, 'view']">{{ eventPlan.id }}</a>
+          </td>-->
+          <td>{{ eventPlan.eventDate | formatMediumDate }}</td>
+          <!--          <td>{{ eventPlan.eventStartTime | formatMediumDatetime }}</td>
+          <td>{{ eventPlan.eventEndTime | formatMediumDatetime }}</td>-->
+          <!--          <td>{{ eventPlan.komootMap }}</td>-->
+          <td>{{ eventPlan.eventNAme }}</td>
+          <!-- <td>{{ eventPlan.description }}</td>
+          <td>{{ eventPlan.travelSchedule }}</td>-->
+          <!--<td>
+            <a *ngIf="eventPlan.hikeMainImage" (click)="openFile(eventPlan.hikeMainImage, eventPlan.hikeMainImageContentType)">
+              <img
+                [src]="'data:' + eventPlan.hikeMainImageContentType + ';base64,' + eventPlan.hikeMainImage"
+                style="max-height: 30px"
+                alt="eventPlan image"
+              />
+            </a>
+            <span *ngIf="eventPlan.hikeMainImage">{{ eventPlan.hikeMainImageContentType }}, {{ byteSize(eventPlan.hikeMainImage) }}</span>
+          </td>-->
+          <!--<td>
+            <a
+              *ngIf="eventPlan.hikeHighlightImage1"
+              (click)="openFile(eventPlan.hikeHighlightImage1, eventPlan.hikeHighlightImage1ContentType)"
+            >
+              <img
+                [src]="'data:' + eventPlan.hikeHighlightImage1ContentType + ';base64,' + eventPlan.hikeHighlightImage1"
+                style="max-height: 30px"
+                alt="eventPlan image"
+              />
+            </a>
+            <span *ngIf="eventPlan.hikeHighlightImage1"
+              >{{ eventPlan.hikeHighlightImage1ContentType }}, {{ byteSize(eventPlan.hikeHighlightImage1) }}</span
+            >
+          </td>-->
+          <!--<td>{{ eventPlan.hikeHighlightImage1Description }}</td>
+          <td>
+            <a
+              *ngIf="eventPlan.hikeHighlightImage2"
+              (click)="openFile(eventPlan.hikeHighlightImage2, eventPlan.hikeHighlightImage2ContentType)"
+            >
+              <img
+                [src]="'data:' + eventPlan.hikeHighlightImage2ContentType + ';base64,' + eventPlan.hikeHighlightImage2"
+                style="max-height: 30px"
+                alt="eventPlan image"
+              />
+            </a>
+            <span *ngIf="eventPlan.hikeHighlightImage2"
+              >{{ eventPlan.hikeHighlightImage2ContentType }}, {{ byteSize(eventPlan.hikeHighlightImage2) }}</span
+            >
+          </td>
+          <td>{{ eventPlan.hikeHighlightImage2Description }}</td>-->
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/event-plan', eventPlan.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                type="submit"
+                [routerLink]="['/event-plan', eventPlan.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                type="submit"
+                (click)="delete(eventPlan)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="eventPlans && eventPlans.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

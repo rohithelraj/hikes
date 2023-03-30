@@ -1,0 +1,35 @@
+{
+  "hikesApp": {
+    "eventPlan": {
+      "home": {
+        "title": "Event Plans",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Event Plan",
+        "createOrEditLabel": "Create or edit a Event Plan",
+        "notFound": "No Event Plans found"
+      },
+      "created": "A new Event Plan is created with identifier {{ param }}",
+      "updated": "A Event Plan is updated with identifier {{ param }}",
+      "deleted": "A Event Plan is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Event Plan {{ id }}?"
+      },
+      "detail": {
+        "title": "Event Plan"
+      },
+      "id": "ID",
+      "eventDate": "Event Date",
+      "eventStartTime": "Event Start Time",
+      "eventEndTime": "Event End Time",
+      "komootMap": "Komoot Map",
+      "eventNAme": "Event Name",
+      "description": "Description",
+      "travelSchedule": "Travel Schedule",
+      "hikeMainImage": "Hike Main Image",
+      "hikeHighlightImage1": "Hike Highlight Image 1",
+      "hikeHighlightImage1Description": "Hike Highlight Image 1 Description",
+      "hikeHighlightImage2": "Hike Highlight Image 2",
+      "hikeHighlightImage2Description": "Hike Highlight Image 2 Description"
+    }
+  }
+}

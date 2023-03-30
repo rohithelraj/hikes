@@ -13,6 +13,7 @@ import { SortByDirective } from './sort/sort-by.directive';
 import { SortDirective } from './sort/sort.directive';
 import { ItemCountComponent } from './pagination/item-count.component';
 import { FilterComponent } from './filter/filter.component';
+import { SafePipe } from './url/safe.pipe';
 
 @NgModule({
   imports: [SharedLibsModule],
@@ -23,6 +24,7 @@ import { FilterComponent } from './filter/filter.component';
     AlertErrorComponent,
     HasAnyAuthorityDirective,
     DurationPipe,
+    SafePipe,
     FormatMediumDatetimePipe,
     FormatMediumDatePipe,
     SortByDirective,
@@ -33,6 +35,7 @@ import { FilterComponent } from './filter/filter.component';
   exports: [
     SharedLibsModule,
     FindLanguageFromKeyPipe,
+    SafePipe,
     TranslateDirective,
     AlertComponent,
     AlertErrorComponent,
