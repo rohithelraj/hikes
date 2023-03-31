@@ -1,0 +1,66 @@
+{
+  "changelogDate": "20230330122410",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "eventDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "eventStartTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "eventEndTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "komootMap",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "eventNAme",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "travelSchedule",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hikeMainImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "hikeHighlightImage1",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "hikeHighlightImage1Description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hikeHighlightImage2",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "hikeHighlightImage2Description",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "EventPlan",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}
