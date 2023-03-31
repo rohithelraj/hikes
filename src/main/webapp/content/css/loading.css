@@ -150,3 +150,15 @@
   -webkit-animation-delay: 0s;
   animation-delay: 0s;
 }
+p.blueText {
+  color: #5555e7;
+  font-weight: bold;
+}
+p.greenText {
+  color: #1bf31b;
+  font-weight: bold;
+  margin-inline-start: 2em;
+}
+.largerFont {
+  font-size: large !important;
+}

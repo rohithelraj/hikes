@@ -7,6 +7,7 @@ import { DataUtils } from 'app/core/util/data-util.service';
 @Component({
   selector: 'jhi-event-plan-detail',
   templateUrl: './event-plan-detail.component.html',
+  styleUrls: ['./event-plan-detail.component.scss'],
 })
 export class EventPlanDetailComponent implements OnInit {
   eventPlan: IEventPlan | null = null;
