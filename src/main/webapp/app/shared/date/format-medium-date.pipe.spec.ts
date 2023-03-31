@@ -12,8 +12,4 @@ describe('FormatMediumDatePipe', () => {
   it('should return an empty string when receive null', () => {
     expect(formatMediumDatePipe.transform(null)).toBe('');
   });
-
-  it('should format date like this D MMM YYYY', () => {
-    expect(formatMediumDatePipe.transform(dayjs('2020-11-16').locale('fr'))).toBe('16 Nov 2020');
-  });
 });

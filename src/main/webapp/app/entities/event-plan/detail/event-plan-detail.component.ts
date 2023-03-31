@@ -1,6 +1,6 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { IEventPlan } from '../event-plan.model';
 import { DataUtils } from 'app/core/util/data-util.service';
 
@@ -13,7 +13,7 @@ export class EventPlanDetailComponent implements OnInit {
   dangerousKomootUrl!: string;
   komootUrl!: SafeResourceUrl;
   constructor(protected dataUtils: DataUtils, protected activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer) {}
-  updatekomootUrl(id: string) {
+  updatekomootUrl(id: string): void {
     // Appending an ID to a YouTube URL is safe.
     // Always make sure to construct SafeValue objects as
     // close as possible to the input data so
