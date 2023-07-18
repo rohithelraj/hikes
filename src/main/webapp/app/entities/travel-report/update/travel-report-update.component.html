@@ -1,0 +1,623 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-travel-report-heading"
+        data-cy="TravelReportCreateUpdateHeading"
+        jhiTranslate="hikesApp.travelReport.home.createOrEditLabel"
+      >
+        Create or edit a Travel Report
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportName" for="field_reportName">Report Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="reportName"
+            id="field_reportName"
+            data-cy="reportName"
+            formControlName="reportName"
+          />
+          <div *ngIf="editForm.get('reportName')!.invalid && (editForm.get('reportName')!.dirty || editForm.get('reportName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('reportName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportDate" for="field_reportDate">Report Date</label>
+          <div class="input-group">
+            <input
+              id="field_reportDate"
+              data-cy="reportDate"
+              type="text"
+              class="form-control"
+              name="reportDate"
+              ngbDatepicker
+              #reportDateDp="ngbDatepicker"
+              formControlName="reportDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="reportDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('reportDate')!.invalid && (editForm.get('reportDate')!.dirty || editForm.get('reportDate')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('reportDate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportEventIds" for="field_reportEventIds">Report Event Ids</label>
+          <input
+            type="text"
+            class="form-control"
+            name="reportEventIds"
+            id="field_reportEventIds"
+            data-cy="reportEventIds"
+            formControlName="reportEventIds"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportDescription" for="field_reportDescription"
+            >Report Description</label
+          >
+          <textarea
+            class="form-control"
+            name="reportDescription"
+            id="field_reportDescription"
+            data-cy="reportDescription"
+            formControlName="reportDescription"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportMainImage" for="field_reportMainImage"
+            >Report Main Image</label
+          >
+          <div>
+            <img
+              [src]="'data:' + editForm.get('reportMainImageContentType')!.value + ';base64,' + editForm.get('reportMainImage')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('reportMainImage')!.value"
+              alt="travelReport image"
+            />
+            <div *ngIf="editForm.get('reportMainImage')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('reportMainImageContentType')!.value }}, {{ byteSize(editForm.get('reportMainImage')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('reportMainImage', 'reportMainImageContentType', 'file_reportMainImage')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_reportMainImage"
+              data-cy="reportMainImage"
+              (change)="setFileData($event, 'reportMainImage', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="reportMainImage"
+            id="field_reportMainImage"
+            data-cy="reportMainImage"
+            formControlName="reportMainImage"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="reportMainImageContentType"
+            id="field_reportMainImageContentType"
+            formControlName="reportMainImageContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage1" for="field_reportSubImage1"
+            >Report Sub Image 1</label
+          >
+          <div>
+            <img
+              [src]="'data:' + editForm.get('reportSubImage1ContentType')!.value + ';base64,' + editForm.get('reportSubImage1')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('reportSubImage1')!.value"
+              alt="travelReport image"
+            />
+            <div *ngIf="editForm.get('reportSubImage1')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('reportSubImage1ContentType')!.value }}, {{ byteSize(editForm.get('reportSubImage1')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('reportSubImage1', 'reportSubImage1ContentType', 'file_reportSubImage1')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_reportSubImage1"
+              data-cy="reportSubImage1"
+              (change)="setFileData($event, 'reportSubImage1', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="reportSubImage1"
+            id="field_reportSubImage1"
+            data-cy="reportSubImage1"
+            formControlName="reportSubImage1"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="reportSubImage1ContentType"
+            id="field_reportSubImage1ContentType"
+            formControlName="reportSubImage1ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImageName" for="field_reportSubImageName"
+            >Report Sub Image Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="reportSubImageName"
+            id="field_reportSubImageName"
+            data-cy="reportSubImageName"
+            formControlName="reportSubImageName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage1Description" for="field_reportSubImage1Description"
+            >Report Sub Image 1 Description</label
+          >
+          <textarea
+            class="form-control"
+            name="reportSubImage1Description"
+            id="field_reportSubImage1Description"
+            data-cy="reportSubImage1Description"
+            formControlName="reportSubImage1Description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage2" for="field_reportSubImage2"
+            >Report Sub Image 2</label
+          >
+          <div>
+            <img
+              [src]="'data:' + editForm.get('reportSubImage2ContentType')!.value + ';base64,' + editForm.get('reportSubImage2')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('reportSubImage2')!.value"
+              alt="travelReport image"
+            />
+            <div *ngIf="editForm.get('reportSubImage2')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('reportSubImage2ContentType')!.value }}, {{ byteSize(editForm.get('reportSubImage2')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('reportSubImage2', 'reportSubImage2ContentType', 'file_reportSubImage2')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_reportSubImage2"
+              data-cy="reportSubImage2"
+              (change)="setFileData($event, 'reportSubImage2', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="reportSubImage2"
+            id="field_reportSubImage2"
+            data-cy="reportSubImage2"
+            formControlName="reportSubImage2"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="reportSubImage2ContentType"
+            id="field_reportSubImage2ContentType"
+            formControlName="reportSubImage2ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage2Name" for="field_reportSubImage2Name"
+            >Report Sub Image 2 Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="reportSubImage2Name"
+            id="field_reportSubImage2Name"
+            data-cy="reportSubImage2Name"
+            formControlName="reportSubImage2Name"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage2Description" for="field_reportSubImage2Description"
+            >Report Sub Image 2 Description</label
+          >
+          <textarea
+            class="form-control"
+            name="reportSubImage2Description"
+            id="field_reportSubImage2Description"
+            data-cy="reportSubImage2Description"
+            formControlName="reportSubImage2Description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage3" for="field_reportSubImage3"
+            >Report Sub Image 3</label
+          >
+          <div>
+            <img
+              [src]="'data:' + editForm.get('reportSubImage3ContentType')!.value + ';base64,' + editForm.get('reportSubImage3')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('reportSubImage3')!.value"
+              alt="travelReport image"
+            />
+            <div *ngIf="editForm.get('reportSubImage3')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('reportSubImage3ContentType')!.value }}, {{ byteSize(editForm.get('reportSubImage3')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('reportSubImage3', 'reportSubImage3ContentType', 'file_reportSubImage3')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_reportSubImage3"
+              data-cy="reportSubImage3"
+              (change)="setFileData($event, 'reportSubImage3', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="reportSubImage3"
+            id="field_reportSubImage3"
+            data-cy="reportSubImage3"
+            formControlName="reportSubImage3"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="reportSubImage3ContentType"
+            id="field_reportSubImage3ContentType"
+            formControlName="reportSubImage3ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage3Name" for="field_reportSubImage3Name"
+            >Report Sub Image 3 Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="reportSubImage3Name"
+            id="field_reportSubImage3Name"
+            data-cy="reportSubImage3Name"
+            formControlName="reportSubImage3Name"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage3Description" for="field_reportSubImage3Description"
+            >Report Sub Image 3 Description</label
+          >
+          <textarea
+            class="form-control"
+            name="reportSubImage3Description"
+            id="field_reportSubImage3Description"
+            data-cy="reportSubImage3Description"
+            formControlName="reportSubImage3Description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage4" for="field_reportSubImage4"
+            >Report Sub Image 4</label
+          >
+          <div>
+            <img
+              [src]="'data:' + editForm.get('reportSubImage4ContentType')!.value + ';base64,' + editForm.get('reportSubImage4')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('reportSubImage4')!.value"
+              alt="travelReport image"
+            />
+            <div *ngIf="editForm.get('reportSubImage4')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('reportSubImage4ContentType')!.value }}, {{ byteSize(editForm.get('reportSubImage4')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('reportSubImage4', 'reportSubImage4ContentType', 'file_reportSubImage4')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_reportSubImage4"
+              data-cy="reportSubImage4"
+              (change)="setFileData($event, 'reportSubImage4', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="reportSubImage4"
+            id="field_reportSubImage4"
+            data-cy="reportSubImage4"
+            formControlName="reportSubImage4"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="reportSubImage4ContentType"
+            id="field_reportSubImage4ContentType"
+            formControlName="reportSubImage4ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage4Name" for="field_reportSubImage4Name"
+            >Report Sub Image 4 Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="reportSubImage4Name"
+            id="field_reportSubImage4Name"
+            data-cy="reportSubImage4Name"
+            formControlName="reportSubImage4Name"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage4Description" for="field_reportSubImage4Description"
+            >Report Sub Image 4 Description</label
+          >
+          <textarea
+            class="form-control"
+            name="reportSubImage4Description"
+            id="field_reportSubImage4Description"
+            data-cy="reportSubImage4Description"
+            formControlName="reportSubImage4Description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage5" for="field_reportSubImage5"
+            >Report Sub Image 5</label
+          >
+          <div>
+            <img
+              [src]="'data:' + editForm.get('reportSubImage5ContentType')!.value + ';base64,' + editForm.get('reportSubImage5')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('reportSubImage5')!.value"
+              alt="travelReport image"
+            />
+            <div *ngIf="editForm.get('reportSubImage5')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('reportSubImage5ContentType')!.value }}, {{ byteSize(editForm.get('reportSubImage5')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('reportSubImage5', 'reportSubImage5ContentType', 'file_reportSubImage5')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_reportSubImage5"
+              data-cy="reportSubImage5"
+              (change)="setFileData($event, 'reportSubImage5', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="reportSubImage5"
+            id="field_reportSubImage5"
+            data-cy="reportSubImage5"
+            formControlName="reportSubImage5"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="reportSubImage5ContentType"
+            id="field_reportSubImage5ContentType"
+            formControlName="reportSubImage5ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage5Name" for="field_reportSubImage5Name"
+            >Report Sub Image 5 Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="reportSubImage5Name"
+            id="field_reportSubImage5Name"
+            data-cy="reportSubImage5Name"
+            formControlName="reportSubImage5Name"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage5Description" for="field_reportSubImage5Description"
+            >Report Sub Image 5 Description</label
+          >
+          <textarea
+            class="form-control"
+            name="reportSubImage5Description"
+            id="field_reportSubImage5Description"
+            data-cy="reportSubImage5Description"
+            formControlName="reportSubImage5Description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage6" for="field_reportSubImage6"
+            >Report Sub Image 6</label
+          >
+          <div>
+            <img
+              [src]="'data:' + editForm.get('reportSubImage6ContentType')!.value + ';base64,' + editForm.get('reportSubImage6')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('reportSubImage6')!.value"
+              alt="travelReport image"
+            />
+            <div *ngIf="editForm.get('reportSubImage6')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('reportSubImage6ContentType')!.value }}, {{ byteSize(editForm.get('reportSubImage6')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('reportSubImage6', 'reportSubImage6ContentType', 'file_reportSubImage6')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_reportSubImage6"
+              data-cy="reportSubImage6"
+              (change)="setFileData($event, 'reportSubImage6', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="reportSubImage6"
+            id="field_reportSubImage6"
+            data-cy="reportSubImage6"
+            formControlName="reportSubImage6"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="reportSubImage6ContentType"
+            id="field_reportSubImage6ContentType"
+            formControlName="reportSubImage6ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage6Name" for="field_reportSubImage6Name"
+            >Report Sub Image 6 Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="reportSubImage6Name"
+            id="field_reportSubImage6Name"
+            data-cy="reportSubImage6Name"
+            formControlName="reportSubImage6Name"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.reportSubImage6Description" for="field_reportSubImage6Description"
+            >Report Sub Image 6 Description</label
+          >
+          <textarea
+            class="form-control"
+            name="reportSubImage6Description"
+            id="field_reportSubImage6Description"
+            data-cy="reportSubImage6Description"
+            formControlName="reportSubImage6Description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.travelReport.trip" for="field_trip">Trip</label>
+          <select class="form-control" id="field_trip" data-cy="trip" name="trip" formControlName="trip" [compareWith]="compareTrip">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="tripOption" *ngFor="let tripOption of tripsSharedCollection">{{ tripOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

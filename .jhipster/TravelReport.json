@@ -1,0 +1,130 @@
+{
+  "changelogDate": "20230718182321",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "reportName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "reportDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "reportEventIds",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reportDescription",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "reportMainImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "reportSubImage1",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "reportSubImageName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reportSubImage1Description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "reportSubImage2",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "reportSubImage2Name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reportSubImage2Description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "reportSubImage3",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "reportSubImage3Name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reportSubImage3Description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "reportSubImage4",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "reportSubImage4Name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reportSubImage4Description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "reportSubImage5",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "reportSubImage5Name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reportSubImage5Description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "reportSubImage6",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "reportSubImage6Name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reportSubImage6Description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "TravelReport",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "id": true,
+      "otherEntityField": "id",
+      "otherEntityName": "trip",
+      "otherEntityRelationshipName": "travelReport",
+      "ownerSide": true,
+      "relationshipName": "trip",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

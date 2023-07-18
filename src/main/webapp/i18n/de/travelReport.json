@@ -1,0 +1,47 @@
+{
+  "hikesApp": {
+    "travelReport": {
+      "home": {
+        "title": "Travel Reports",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Travel Report erstellen",
+        "createOrEditLabel": "Travel Report erstellen oder bearbeiten",
+        "notFound": "Keine Travel Reports gefunden"
+      },
+      "created": "Travel Report erstellt mit ID {{ param }}",
+      "updated": "Travel Report aktualisiert mit ID {{ param }}",
+      "deleted": "Travel Report gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Travel Report {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Travel Report"
+      },
+      "id": "ID",
+      "reportName": "Report Name",
+      "reportDate": "Report Date",
+      "reportEventIds": "Report Event Ids",
+      "reportDescription": "Report Description",
+      "reportMainImage": "Report Main Image",
+      "reportSubImage1": "Report Sub Image 1",
+      "reportSubImageName": "Report Sub Image Name",
+      "reportSubImage1Description": "Report Sub Image 1 Description",
+      "reportSubImage2": "Report Sub Image 2",
+      "reportSubImage2Name": "Report Sub Image 2 Name",
+      "reportSubImage2Description": "Report Sub Image 2 Description",
+      "reportSubImage3": "Report Sub Image 3",
+      "reportSubImage3Name": "Report Sub Image 3 Name",
+      "reportSubImage3Description": "Report Sub Image 3 Description",
+      "reportSubImage4": "Report Sub Image 4",
+      "reportSubImage4Name": "Report Sub Image 4 Name",
+      "reportSubImage4Description": "Report Sub Image 4 Description",
+      "reportSubImage5": "Report Sub Image 5",
+      "reportSubImage5Name": "Report Sub Image 5 Name",
+      "reportSubImage5Description": "Report Sub Image 5 Description",
+      "reportSubImage6": "Report Sub Image 6",
+      "reportSubImage6Name": "Report Sub Image 6 Name",
+      "reportSubImage6Description": "Report Sub Image 6 Description",
+      "trip": "Trip"
+    }
+  }
+}

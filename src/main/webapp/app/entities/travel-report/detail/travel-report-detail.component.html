@@ -1,0 +1,189 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="travelReport">
+      <h2 data-cy="travelReportDetailsHeading"><span jhiTranslate="hikesApp.travelReport.detail.title">Travel Report</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ travelReport.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportName">Report Name</span></dt>
+        <dd>
+          <span>{{ travelReport.reportName }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportDate">Report Date</span></dt>
+        <dd>
+          <span>{{ travelReport.reportDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportEventIds">Report Event Ids</span></dt>
+        <dd>
+          <span>{{ travelReport.reportEventIds }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportDescription">Report Description</span></dt>
+        <dd>
+          <span>{{ travelReport.reportDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportMainImage">Report Main Image</span></dt>
+        <dd>
+          <div *ngIf="travelReport.reportMainImage">
+            <a (click)="openFile(travelReport.reportMainImage, travelReport.reportMainImageContentType)">
+              <img
+                [src]="'data:' + travelReport.reportMainImageContentType + ';base64,' + travelReport.reportMainImage"
+                style="max-width: 100%"
+                alt="travelReport image"
+              />
+            </a>
+            {{ travelReport.reportMainImageContentType }}, {{ byteSize(travelReport.reportMainImage) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage1">Report Sub Image 1</span></dt>
+        <dd>
+          <div *ngIf="travelReport.reportSubImage1">
+            <a (click)="openFile(travelReport.reportSubImage1, travelReport.reportSubImage1ContentType)">
+              <img
+                [src]="'data:' + travelReport.reportSubImage1ContentType + ';base64,' + travelReport.reportSubImage1"
+                style="max-width: 100%"
+                alt="travelReport image"
+              />
+            </a>
+            {{ travelReport.reportSubImage1ContentType }}, {{ byteSize(travelReport.reportSubImage1) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImageName">Report Sub Image Name</span></dt>
+        <dd>
+          <span>{{ travelReport.reportSubImageName }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage1Description">Report Sub Image 1 Description</span></dt>
+        <dd>
+          <span>{{ travelReport.reportSubImage1Description }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage2">Report Sub Image 2</span></dt>
+        <dd>
+          <div *ngIf="travelReport.reportSubImage2">
+            <a (click)="openFile(travelReport.reportSubImage2, travelReport.reportSubImage2ContentType)">
+              <img
+                [src]="'data:' + travelReport.reportSubImage2ContentType + ';base64,' + travelReport.reportSubImage2"
+                style="max-width: 100%"
+                alt="travelReport image"
+              />
+            </a>
+            {{ travelReport.reportSubImage2ContentType }}, {{ byteSize(travelReport.reportSubImage2) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage2Name">Report Sub Image 2 Name</span></dt>
+        <dd>
+          <span>{{ travelReport.reportSubImage2Name }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage2Description">Report Sub Image 2 Description</span></dt>
+        <dd>
+          <span>{{ travelReport.reportSubImage2Description }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage3">Report Sub Image 3</span></dt>
+        <dd>
+          <div *ngIf="travelReport.reportSubImage3">
+            <a (click)="openFile(travelReport.reportSubImage3, travelReport.reportSubImage3ContentType)">
+              <img
+                [src]="'data:' + travelReport.reportSubImage3ContentType + ';base64,' + travelReport.reportSubImage3"
+                style="max-width: 100%"
+                alt="travelReport image"
+              />
+            </a>
+            {{ travelReport.reportSubImage3ContentType }}, {{ byteSize(travelReport.reportSubImage3) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage3Name">Report Sub Image 3 Name</span></dt>
+        <dd>
+          <span>{{ travelReport.reportSubImage3Name }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage3Description">Report Sub Image 3 Description</span></dt>
+        <dd>
+          <span>{{ travelReport.reportSubImage3Description }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage4">Report Sub Image 4</span></dt>
+        <dd>
+          <div *ngIf="travelReport.reportSubImage4">
+            <a (click)="openFile(travelReport.reportSubImage4, travelReport.reportSubImage4ContentType)">
+              <img
+                [src]="'data:' + travelReport.reportSubImage4ContentType + ';base64,' + travelReport.reportSubImage4"
+                style="max-width: 100%"
+                alt="travelReport image"
+              />
+            </a>
+            {{ travelReport.reportSubImage4ContentType }}, {{ byteSize(travelReport.reportSubImage4) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage4Name">Report Sub Image 4 Name</span></dt>
+        <dd>
+          <span>{{ travelReport.reportSubImage4Name }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage4Description">Report Sub Image 4 Description</span></dt>
+        <dd>
+          <span>{{ travelReport.reportSubImage4Description }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage5">Report Sub Image 5</span></dt>
+        <dd>
+          <div *ngIf="travelReport.reportSubImage5">
+            <a (click)="openFile(travelReport.reportSubImage5, travelReport.reportSubImage5ContentType)">
+              <img
+                [src]="'data:' + travelReport.reportSubImage5ContentType + ';base64,' + travelReport.reportSubImage5"
+                style="max-width: 100%"
+                alt="travelReport image"
+              />
+            </a>
+            {{ travelReport.reportSubImage5ContentType }}, {{ byteSize(travelReport.reportSubImage5) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage5Name">Report Sub Image 5 Name</span></dt>
+        <dd>
+          <span>{{ travelReport.reportSubImage5Name }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage5Description">Report Sub Image 5 Description</span></dt>
+        <dd>
+          <span>{{ travelReport.reportSubImage5Description }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage6">Report Sub Image 6</span></dt>
+        <dd>
+          <div *ngIf="travelReport.reportSubImage6">
+            <a (click)="openFile(travelReport.reportSubImage6, travelReport.reportSubImage6ContentType)">
+              <img
+                [src]="'data:' + travelReport.reportSubImage6ContentType + ';base64,' + travelReport.reportSubImage6"
+                style="max-width: 100%"
+                alt="travelReport image"
+              />
+            </a>
+            {{ travelReport.reportSubImage6ContentType }}, {{ byteSize(travelReport.reportSubImage6) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage6Name">Report Sub Image 6 Name</span></dt>
+        <dd>
+          <span>{{ travelReport.reportSubImage6Name }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.reportSubImage6Description">Report Sub Image 6 Description</span></dt>
+        <dd>
+          <span>{{ travelReport.reportSubImage6Description }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.travelReport.trip">Trip</span></dt>
+        <dd>
+          <div *ngIf="travelReport.trip">
+            <a [routerLink]="['/trip', travelReport.trip.id, 'view']">{{ travelReport.trip.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/travel-report', travelReport.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

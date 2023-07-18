@@ -1,0 +1,371 @@
+<div>
+  <h2 id="page-heading" data-cy="TravelReportHeading">
+    <span jhiTranslate="hikesApp.travelReport.home.title">Travel Reports</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hikesApp.travelReport.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-travel-report"
+        [routerLink]="['/travel-report/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hikesApp.travelReport.home.createLabel"> Create a new Travel Report </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="travelReports?.length === 0">
+    <span jhiTranslate="hikesApp.travelReport.home.notFound">No Travel Reports found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="travelReports && travelReports.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportName">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportName">Report Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportDate">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportDate">Report Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportEventIds">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportEventIds">Report Event Ids</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportDescription">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportDescription">Report Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportMainImage">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportMainImage">Report Main Image</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage1">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage1">Report Sub Image 1</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImageName">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImageName">Report Sub Image Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage1Description">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage1Description">Report Sub Image 1 Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage2">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage2">Report Sub Image 2</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage2Name">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage2Name">Report Sub Image 2 Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage2Description">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage2Description">Report Sub Image 2 Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage3">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage3">Report Sub Image 3</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage3Name">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage3Name">Report Sub Image 3 Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage3Description">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage3Description">Report Sub Image 3 Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage4">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage4">Report Sub Image 4</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage4Name">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage4Name">Report Sub Image 4 Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage4Description">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage4Description">Report Sub Image 4 Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage5">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage5">Report Sub Image 5</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage5Name">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage5Name">Report Sub Image 5 Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage5Description">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage5Description">Report Sub Image 5 Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage6">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage6">Report Sub Image 6</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage6Name">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage6Name">Report Sub Image 6 Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportSubImage6Description">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.reportSubImage6Description">Report Sub Image 6 Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="trip.id">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.travelReport.trip">Trip</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let travelReport of travelReports; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/travel-report', travelReport.id, 'view']">{{ travelReport.id }}</a>
+          </td>
+          <td>{{ travelReport.reportName }}</td>
+          <td>{{ travelReport.reportDate | formatMediumDate }}</td>
+          <td>{{ travelReport.reportEventIds }}</td>
+          <td>{{ travelReport.reportDescription }}</td>
+          <td>
+            <a
+              *ngIf="travelReport.reportMainImage"
+              (click)="openFile(travelReport.reportMainImage, travelReport.reportMainImageContentType)"
+            >
+              <img
+                [src]="'data:' + travelReport.reportMainImageContentType + ';base64,' + travelReport.reportMainImage"
+                style="max-height: 30px"
+                alt="travelReport image"
+              />
+            </a>
+            <span *ngIf="travelReport.reportMainImage"
+              >{{ travelReport.reportMainImageContentType }}, {{ byteSize(travelReport.reportMainImage) }}</span
+            >
+          </td>
+          <td>
+            <a
+              *ngIf="travelReport.reportSubImage1"
+              (click)="openFile(travelReport.reportSubImage1, travelReport.reportSubImage1ContentType)"
+            >
+              <img
+                [src]="'data:' + travelReport.reportSubImage1ContentType + ';base64,' + travelReport.reportSubImage1"
+                style="max-height: 30px"
+                alt="travelReport image"
+              />
+            </a>
+            <span *ngIf="travelReport.reportSubImage1"
+              >{{ travelReport.reportSubImage1ContentType }}, {{ byteSize(travelReport.reportSubImage1) }}</span
+            >
+          </td>
+          <td>{{ travelReport.reportSubImageName }}</td>
+          <td>{{ travelReport.reportSubImage1Description }}</td>
+          <td>
+            <a
+              *ngIf="travelReport.reportSubImage2"
+              (click)="openFile(travelReport.reportSubImage2, travelReport.reportSubImage2ContentType)"
+            >
+              <img
+                [src]="'data:' + travelReport.reportSubImage2ContentType + ';base64,' + travelReport.reportSubImage2"
+                style="max-height: 30px"
+                alt="travelReport image"
+              />
+            </a>
+            <span *ngIf="travelReport.reportSubImage2"
+              >{{ travelReport.reportSubImage2ContentType }}, {{ byteSize(travelReport.reportSubImage2) }}</span
+            >
+          </td>
+          <td>{{ travelReport.reportSubImage2Name }}</td>
+          <td>{{ travelReport.reportSubImage2Description }}</td>
+          <td>
+            <a
+              *ngIf="travelReport.reportSubImage3"
+              (click)="openFile(travelReport.reportSubImage3, travelReport.reportSubImage3ContentType)"
+            >
+              <img
+                [src]="'data:' + travelReport.reportSubImage3ContentType + ';base64,' + travelReport.reportSubImage3"
+                style="max-height: 30px"
+                alt="travelReport image"
+              />
+            </a>
+            <span *ngIf="travelReport.reportSubImage3"
+              >{{ travelReport.reportSubImage3ContentType }}, {{ byteSize(travelReport.reportSubImage3) }}</span
+            >
+          </td>
+          <td>{{ travelReport.reportSubImage3Name }}</td>
+          <td>{{ travelReport.reportSubImage3Description }}</td>
+          <td>
+            <a
+              *ngIf="travelReport.reportSubImage4"
+              (click)="openFile(travelReport.reportSubImage4, travelReport.reportSubImage4ContentType)"
+            >
+              <img
+                [src]="'data:' + travelReport.reportSubImage4ContentType + ';base64,' + travelReport.reportSubImage4"
+                style="max-height: 30px"
+                alt="travelReport image"
+              />
+            </a>
+            <span *ngIf="travelReport.reportSubImage4"
+              >{{ travelReport.reportSubImage4ContentType }}, {{ byteSize(travelReport.reportSubImage4) }}</span
+            >
+          </td>
+          <td>{{ travelReport.reportSubImage4Name }}</td>
+          <td>{{ travelReport.reportSubImage4Description }}</td>
+          <td>
+            <a
+              *ngIf="travelReport.reportSubImage5"
+              (click)="openFile(travelReport.reportSubImage5, travelReport.reportSubImage5ContentType)"
+            >
+              <img
+                [src]="'data:' + travelReport.reportSubImage5ContentType + ';base64,' + travelReport.reportSubImage5"
+                style="max-height: 30px"
+                alt="travelReport image"
+              />
+            </a>
+            <span *ngIf="travelReport.reportSubImage5"
+              >{{ travelReport.reportSubImage5ContentType }}, {{ byteSize(travelReport.reportSubImage5) }}</span
+            >
+          </td>
+          <td>{{ travelReport.reportSubImage5Name }}</td>
+          <td>{{ travelReport.reportSubImage5Description }}</td>
+          <td>
+            <a
+              *ngIf="travelReport.reportSubImage6"
+              (click)="openFile(travelReport.reportSubImage6, travelReport.reportSubImage6ContentType)"
+            >
+              <img
+                [src]="'data:' + travelReport.reportSubImage6ContentType + ';base64,' + travelReport.reportSubImage6"
+                style="max-height: 30px"
+                alt="travelReport image"
+              />
+            </a>
+            <span *ngIf="travelReport.reportSubImage6"
+              >{{ travelReport.reportSubImage6ContentType }}, {{ byteSize(travelReport.reportSubImage6) }}</span
+            >
+          </td>
+          <td>{{ travelReport.reportSubImage6Name }}</td>
+          <td>{{ travelReport.reportSubImage6Description }}</td>
+          <td>
+            <div *ngIf="travelReport.trip">
+              <a [routerLink]="['/trip', travelReport.trip.id, 'view']">{{ travelReport.trip.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/travel-report', travelReport.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/travel-report', travelReport.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(travelReport)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="travelReports && travelReports.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>
