@@ -1,0 +1,48 @@
+{
+  "hikesApp": {
+    "trip": {
+      "home": {
+        "title": "Trips",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Trip erstellen",
+        "createOrEditLabel": "Trip erstellen oder bearbeiten",
+        "notFound": "Keine Trips gefunden"
+      },
+      "created": "Trip erstellt mit ID {{ param }}",
+      "updated": "Trip aktualisiert mit ID {{ param }}",
+      "deleted": "Trip gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Trip {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Trip"
+      },
+      "id": "ID",
+      "tripName": "Trip Name",
+      "mainImage": "Main Image",
+      "subImage1": "Sub Image 1",
+      "subImage2": "Sub Image 2",
+      "subImage3": "Sub Image 3",
+      "subImage4": "Sub Image 4",
+      "subImage5": "Sub Image 5",
+      "subImage6": "Sub Image 6",
+      "tripDescription": "Trip Description",
+      "combinedMap": "Combined Map",
+      "relatedEvents": "Related Events",
+      "subImage1Description": "Sub Image 1 Description",
+      "subImage2Description": "Sub Image 2 Description",
+      "subImage3Description": "Sub Image 3 Description",
+      "subImage4Description": "Sub Image 4 Description",
+      "subImage5Description": "Sub Image 5 Description",
+      "subImage6Description": "Sub Image 6 Description",
+      "activeSubImages": "Active Sub Images",
+      "activeRelatedEvents": "Active Related Events",
+      "transportationDetails": "Transportation Details",
+      "costDetails": "Cost Details",
+      "accomodationDetails": "Accomodation Details",
+      "relatedLinks": "Related Links",
+      "startDate": "Start Date",
+      "endDate": "End Date"
+    }
+  }
+}

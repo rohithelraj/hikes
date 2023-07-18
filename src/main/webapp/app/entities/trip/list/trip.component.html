@@ -1,0 +1,301 @@
+<div>
+  <h2 id="page-heading" data-cy="TripHeading">
+    <span jhiTranslate="hikesApp.trip.home.title">Trips</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hikesApp.trip.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-trip"
+        [routerLink]="['/trip/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hikesApp.trip.home.createLabel"> Create a new Trip </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="trips?.length === 0">
+    <span jhiTranslate="hikesApp.trip.home.notFound">No Trips found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="trips && trips.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <!--          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>-->
+          <th scope="col" jhiSortBy="tripName">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.tripName">Trip Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <!--<th scope="col" jhiSortBy="mainImage">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.mainImage">Main Image</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="subImage1">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.subImage1">Sub Image 1</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="subImage2">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.subImage2">Sub Image 2</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="subImage3">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.subImage3">Sub Image 3</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="subImage4">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.subImage4">Sub Image 4</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="subImage5">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.subImage5">Sub Image 5</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="subImage6">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.subImage6">Sub Image 6</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tripDescription">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.tripDescription">Trip Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="combinedMap">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.combinedMap">Combined Map</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="relatedEvents">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.relatedEvents">Related Events</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="subImage1Description">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.subImage1Description">Sub Image 1 Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="subImage2Description">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.subImage2Description">Sub Image 2 Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="subImage3Description">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.subImage3Description">Sub Image 3 Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="subImage4Description">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.subImage4Description">Sub Image 4 Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="subImage5Description">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.subImage5Description">Sub Image 5 Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="subImage6Description">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.subImage6Description">Sub Image 6 Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="activeSubImages">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.activeSubImages">Active Sub Images</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="activeRelatedEvents">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.activeRelatedEvents">Active Related Events</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="transportationDetails">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.transportationDetails">Transportation Details</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="costDetails">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.costDetails">Cost Details</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="accomodationDetails">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.accomodationDetails">Accomodation Details</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="relatedLinks">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.relatedLinks">Related Links</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>-->
+          <th scope="col" jhiSortBy="startDate">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.startDate">Start Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="endDate">
+            <div class="d-flex">
+              <span jhiTranslate="hikesApp.trip.endDate">End Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trip of trips; trackBy: trackId" data-cy="entityTable">
+          <!-- <td>
+            <a [routerLink]="['/trip', trip.id, 'view']">{{ trip.id }}</a>
+          </td>-->
+          <td>{{ trip.tripName }}</td>
+          <!-- <td>
+            <a *ngIf="trip.mainImage" (click)="openFile(trip.mainImage, trip.mainImageContentType)">
+              <img [src]="'data:' + trip.mainImageContentType + ';base64,' + trip.mainImage" style="max-height: 30px" alt="trip image" />
+            </a>
+            <span *ngIf="trip.mainImage">{{ trip.mainImageContentType }}, {{ byteSize(trip.mainImage) }}</span>
+          </td>
+          <td>
+            <a *ngIf="trip.subImage1" (click)="openFile(trip.subImage1, trip.subImage1ContentType)">
+              <img [src]="'data:' + trip.subImage1ContentType + ';base64,' + trip.subImage1" style="max-height: 30px" alt="trip image" />
+            </a>
+            <span *ngIf="trip.subImage1">{{ trip.subImage1ContentType }}, {{ byteSize(trip.subImage1) }}</span>
+          </td>
+          <td>
+            <a *ngIf="trip.subImage2" (click)="openFile(trip.subImage2, trip.subImage2ContentType)">
+              <img [src]="'data:' + trip.subImage2ContentType + ';base64,' + trip.subImage2" style="max-height: 30px" alt="trip image" />
+            </a>
+            <span *ngIf="trip.subImage2">{{ trip.subImage2ContentType }}, {{ byteSize(trip.subImage2) }}</span>
+          </td>
+          <td>
+            <a *ngIf="trip.subImage3" (click)="openFile(trip.subImage3, trip.subImage3ContentType)">
+              <img [src]="'data:' + trip.subImage3ContentType + ';base64,' + trip.subImage3" style="max-height: 30px" alt="trip image" />
+            </a>
+            <span *ngIf="trip.subImage3">{{ trip.subImage3ContentType }}, {{ byteSize(trip.subImage3) }}</span>
+          </td>
+          <td>
+            <a *ngIf="trip.subImage4" (click)="openFile(trip.subImage4, trip.subImage4ContentType)">
+              <img [src]="'data:' + trip.subImage4ContentType + ';base64,' + trip.subImage4" style="max-height: 30px" alt="trip image" />
+            </a>
+            <span *ngIf="trip.subImage4">{{ trip.subImage4ContentType }}, {{ byteSize(trip.subImage4) }}</span>
+          </td>
+          <td>
+            <a *ngIf="trip.subImage5" (click)="openFile(trip.subImage5, trip.subImage5ContentType)">
+              <img [src]="'data:' + trip.subImage5ContentType + ';base64,' + trip.subImage5" style="max-height: 30px" alt="trip image" />
+            </a>
+            <span *ngIf="trip.subImage5">{{ trip.subImage5ContentType }}, {{ byteSize(trip.subImage5) }}</span>
+          </td>
+          <td>
+            <a *ngIf="trip.subImage6" (click)="openFile(trip.subImage6, trip.subImage6ContentType)">
+              <img [src]="'data:' + trip.subImage6ContentType + ';base64,' + trip.subImage6" style="max-height: 30px" alt="trip image" />
+            </a>
+            <span *ngIf="trip.subImage6">{{ trip.subImage6ContentType }}, {{ byteSize(trip.subImage6) }}</span>
+          </td>
+          <td>{{ trip.tripDescription }}</td>
+          <td>{{ trip.combinedMap }}</td>
+          <td>{{ trip.relatedEvents }}</td>
+          <td>{{ trip.subImage1Description }}</td>
+          <td>{{ trip.subImage2Description }}</td>
+          <td>{{ trip.subImage3Description }}</td>
+          <td>{{ trip.subImage4Description }}</td>
+          <td>{{ trip.subImage5Description }}</td>
+          <td>{{ trip.subImage6Description }}</td>
+          <td>{{ trip.activeSubImages }}</td>
+          <td>{{ trip.activeRelatedEvents }}</td>
+          <td>{{ trip.transportationDetails }}</td>
+          <td>{{ trip.costDetails }}</td>
+          <td>{{ trip.accomodationDetails }}</td>
+          <td>{{ trip.relatedLinks }}</td>-->
+          <td>{{ trip.startDate | formatMediumDate }}</td>
+          <td>{{ trip.endDate | formatMediumDate }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/trip', trip.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/trip', trip.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(trip)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="trips && trips.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

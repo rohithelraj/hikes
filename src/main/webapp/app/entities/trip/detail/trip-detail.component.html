@@ -1,0 +1,262 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="trip">
+      <!--<h2 data-cy="tripDetailsHeading"><span >{{ trip.tripName }}</span></h2>
+
+      <hr />-->
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <!--      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="hikesApp.trip.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ trip.startDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ trip.endDate | formatMediumDate }}</span>
+        </dd>
+        &lt;!&ndash;<dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ trip.id }}</span>
+        </dd>&ndash;&gt;
+       &lt;!&ndash; <dt><span jhiTranslate="hikesApp.trip.tripName">Trip Name</span></dt>
+        <dd>
+          <span>{{ trip.tripName }}</span>
+        </dd>&ndash;&gt;
+        <dt><span jhiTranslate="hikesApp.trip.mainImage">Main Image</span></dt>
+        <dd>
+          <div *ngIf="trip.mainImage">
+            <a (click)="openFile(trip.mainImage, trip.mainImageContentType)">
+              <img [src]="'data:' + trip.mainImageContentType + ';base64,' + trip.mainImage" style="max-width: 100%" alt="trip image" />
+            </a>
+&lt;!&ndash;            {{ trip.mainImageContentType }}, {{ byteSize(trip.mainImage) }}&ndash;&gt;
+          </div>
+        </dd>
+
+        <dt><span jhiTranslate="hikesApp.trip.tripDescription">Trip Description</span></dt>
+        <dd>
+          <span>{{ trip.tripDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.combinedMap">Combined Map</span></dt>
+        <dd>
+          <span>{{ trip.combinedMap }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.relatedEvents">Related Events</span></dt>
+        <dd>
+          <span>{{ trip.relatedEvents }}</span>
+        </dd>
+&lt;!&ndash;        <dt><span jhiTranslate="hikesApp.trip.subImage1">Sub Image 1</span></dt>&ndash;&gt;
+&lt;!&ndash;        <dd>
+          <div *ngIf="trip.subImage1">
+            <a (click)="openFile(trip.subImage1, trip.subImage1ContentType)">
+              <img [src]="'data:' + trip.subImage1ContentType + ';base64,' + trip.subImage1" style="max-width: 100%" alt="trip image" />
+            </a>
+            {{ trip.subImage1ContentType }}, {{ byteSize(trip.subImage1) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.subImage2">Sub Image 2</span></dt>
+        <dd>
+          <div *ngIf="trip.subImage2">
+            <a (click)="openFile(trip.subImage2, trip.subImage2ContentType)">
+              <img [src]="'data:' + trip.subImage2ContentType + ';base64,' + trip.subImage2" style="max-width: 100%" alt="trip image" />
+            </a>
+            {{ trip.subImage2ContentType }}, {{ byteSize(trip.subImage2) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.subImage3">Sub Image 3</span></dt>
+        <dd>
+          <div *ngIf="trip.subImage3">
+            <a (click)="openFile(trip.subImage3, trip.subImage3ContentType)">
+              <img [src]="'data:' + trip.subImage3ContentType + ';base64,' + trip.subImage3" style="max-width: 100%" alt="trip image" />
+            </a>
+            {{ trip.subImage3ContentType }}, {{ byteSize(trip.subImage3) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.subImage4">Sub Image 4</span></dt>
+        <dd>
+          <div *ngIf="trip.subImage4">
+            <a (click)="openFile(trip.subImage4, trip.subImage4ContentType)">
+              <img [src]="'data:' + trip.subImage4ContentType + ';base64,' + trip.subImage4" style="max-width: 100%" alt="trip image" />
+            </a>
+            {{ trip.subImage4ContentType }}, {{ byteSize(trip.subImage4) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.subImage5">Sub Image 5</span></dt>
+        <dd>
+          <div *ngIf="trip.subImage5">
+            <a (click)="openFile(trip.subImage5, trip.subImage5ContentType)">
+              <img [src]="'data:' + trip.subImage5ContentType + ';base64,' + trip.subImage5" style="max-width: 100%" alt="trip image" />
+            </a>
+            {{ trip.subImage5ContentType }}, {{ byteSize(trip.subImage5) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.subImage6">Sub Image 6</span></dt>
+        <dd>
+          <div *ngIf="trip.subImage6">
+            <a (click)="openFile(trip.subImage6, trip.subImage6ContentType)">
+              <img [src]="'data:' + trip.subImage6ContentType + ';base64,' + trip.subImage6" style="max-width: 100%" alt="trip image" />
+            </a>
+            {{ trip.subImage6ContentType }}, {{ byteSize(trip.subImage6) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.subImage1Description">Sub Image 1 Description</span></dt>
+        <dd>
+          <span>{{ trip.subImage1Description }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.subImage2Description">Sub Image 2 Description</span></dt>
+        <dd>
+          <span>{{ trip.subImage2Description }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.subImage3Description">Sub Image 3 Description</span></dt>
+        <dd>
+          <span>{{ trip.subImage3Description }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.subImage4Description">Sub Image 4 Description</span></dt>
+        <dd>
+          <span>{{ trip.subImage4Description }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.subImage5Description">Sub Image 5 Description</span></dt>
+        <dd>
+          <span>{{ trip.subImage5Description }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.subImage6Description">Sub Image 6 Description</span></dt>&ndash;&gt;
+&lt;!&ndash;        <dd>
+          <span>{{ trip.subImage6Description }}</span>
+        </dd>&ndash;&gt;
+        <dt><span jhiTranslate="hikesApp.trip.activeSubImages">Active Sub Images</span></dt>
+        <dd>
+          <span>{{ trip.activeSubImages }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.activeRelatedEvents">Active Related Events</span></dt>
+        <dd>
+          <span>{{ trip.activeRelatedEvents }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.transportationDetails">Transportation Details</span></dt>
+        <dd>
+          <span>{{ trip.transportationDetails }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.costDetails">Cost Details</span></dt>
+        <dd>
+          <span>{{ trip.costDetails }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.accomodationDetails">Accomodation Details</span></dt>
+        <dd>
+          <span>{{ trip.accomodationDetails }}</span>
+        </dd>
+        <dt><span jhiTranslate="hikesApp.trip.relatedLinks">Related Links</span></dt>
+        <dd>
+          <span>{{ trip.relatedLinks }}</span>
+        </dd>
+
+      </dl>-->
+
+      <jhi-alert></jhi-alert>
+      <h1 class="display-5">{{ trip.tripName }}</h1>
+
+      <br />
+      <ol class="list-group list-group-item-primary">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <br />
+            <img [src]="'data:' + trip.mainImage + ';base64,' + trip.mainImage" class="d-block w-100" alt="..." />
+            <br />
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold"><span class="largerFont text-info">Start Date</span></div>
+            {{ trip.startDate | formatMediumDate }}
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold"><span class="largerFont text-info">End Date</span></div>
+            {{ trip.endDate | formatMediumDate }}
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="fw-bold" style="margin-left: 0.5em"><span class="largerFont text-info">Events</span></div>
+          <br />
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="profile-tab"
+                data-toggle="tab"
+                href="#profile"
+                role="tab"
+                aria-controls="profile"
+                aria-selected="false"
+                >Profile</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="contact-tab"
+                data-toggle="tab"
+                href="#contact"
+                role="tab"
+                aria-controls="contact"
+                aria-selected="false"
+                >Contact</a
+              >
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.
+              Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby
+              sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan
+              american apparel, butcher voluptate nisi qui.
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog
+              sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress,
+              commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore
+              aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack
+              odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party
+              scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
+            </div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+              Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi
+              farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia
+              banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi
+              whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard
+              of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <iframe
+            src="https://www.google.com/maps/d/embed?mid=1FNVldK6fYwWIylwkkpjPwI8JPyfelpI&ehbc=2E312F"
+            width="640 em"
+            height="480 em"
+          ></iframe>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div [innerHTML]="trip.tripDescription"></div>
+          </div>
+        </li>
+      </ol>
+      <br />
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/trip', trip.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

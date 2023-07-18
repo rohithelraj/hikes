@@ -8,6 +8,7 @@
       "entities": {
         "main": "Entitäten",
         "eventPlan": "Event Plan",
+        "trip": "Trip",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

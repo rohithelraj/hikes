@@ -1,0 +1,48 @@
+{
+  "hikesApp": {
+    "trip": {
+      "home": {
+        "title": "Trips",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Trip",
+        "createOrEditLabel": "Create or edit a Trip",
+        "notFound": "No Trips found"
+      },
+      "created": "A new Trip is created with identifier {{ param }}",
+      "updated": "A Trip is updated with identifier {{ param }}",
+      "deleted": "A Trip is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Trip {{ id }}?"
+      },
+      "detail": {
+        "title": "Trip"
+      },
+      "id": "ID",
+      "tripName": "Trip Name",
+      "mainImage": "Main Image",
+      "subImage1": "Sub Image 1",
+      "subImage2": "Sub Image 2",
+      "subImage3": "Sub Image 3",
+      "subImage4": "Sub Image 4",
+      "subImage5": "Sub Image 5",
+      "subImage6": "Sub Image 6",
+      "tripDescription": "Trip Description",
+      "combinedMap": "Combined Map",
+      "relatedEvents": "Related Events",
+      "subImage1Description": "Sub Image 1 Description",
+      "subImage2Description": "Sub Image 2 Description",
+      "subImage3Description": "Sub Image 3 Description",
+      "subImage4Description": "Sub Image 4 Description",
+      "subImage5Description": "Sub Image 5 Description",
+      "subImage6Description": "Sub Image 6 Description",
+      "activeSubImages": "Active Sub Images",
+      "activeRelatedEvents": "Active Related Events",
+      "transportationDetails": "Transportation Details",
+      "costDetails": "Cost Details",
+      "accomodationDetails": "Accomodation Details",
+      "relatedLinks": "Related Links",
+      "startDate": "Start Date",
+      "endDate": "End Date"
+    }
+  }
+}

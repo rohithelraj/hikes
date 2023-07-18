@@ -1,0 +1,567 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-trip-heading" data-cy="TripCreateUpdateHeading" jhiTranslate="hikesApp.trip.home.createOrEditLabel">
+        Create or edit a Trip
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.tripName" for="field_tripName">Trip Name</label>
+          <input type="text" class="form-control" name="tripName" id="field_tripName" data-cy="tripName" formControlName="tripName" />
+          <div *ngIf="editForm.get('tripName')!.invalid && (editForm.get('tripName')!.dirty || editForm.get('tripName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('tripName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.mainImage" for="field_mainImage">Main Image</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('mainImageContentType')!.value + ';base64,' + editForm.get('mainImage')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('mainImage')!.value"
+              alt="trip image"
+            />
+            <div *ngIf="editForm.get('mainImage')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('mainImageContentType')!.value }}, {{ byteSize(editForm.get('mainImage')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('mainImage', 'mainImageContentType', 'file_mainImage')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_mainImage"
+              data-cy="mainImage"
+              (change)="setFileData($event, 'mainImage', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="mainImage" id="field_mainImage" data-cy="mainImage" formControlName="mainImage" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="mainImageContentType"
+            id="field_mainImageContentType"
+            formControlName="mainImageContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.subImage1" for="field_subImage1">Sub Image 1</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('subImage1ContentType')!.value + ';base64,' + editForm.get('subImage1')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('subImage1')!.value"
+              alt="trip image"
+            />
+            <div *ngIf="editForm.get('subImage1')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('subImage1ContentType')!.value }}, {{ byteSize(editForm.get('subImage1')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('subImage1', 'subImage1ContentType', 'file_subImage1')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_subImage1"
+              data-cy="subImage1"
+              (change)="setFileData($event, 'subImage1', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="subImage1" id="field_subImage1" data-cy="subImage1" formControlName="subImage1" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="subImage1ContentType"
+            id="field_subImage1ContentType"
+            formControlName="subImage1ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.subImage2" for="field_subImage2">Sub Image 2</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('subImage2ContentType')!.value + ';base64,' + editForm.get('subImage2')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('subImage2')!.value"
+              alt="trip image"
+            />
+            <div *ngIf="editForm.get('subImage2')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('subImage2ContentType')!.value }}, {{ byteSize(editForm.get('subImage2')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('subImage2', 'subImage2ContentType', 'file_subImage2')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_subImage2"
+              data-cy="subImage2"
+              (change)="setFileData($event, 'subImage2', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="subImage2" id="field_subImage2" data-cy="subImage2" formControlName="subImage2" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="subImage2ContentType"
+            id="field_subImage2ContentType"
+            formControlName="subImage2ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.subImage3" for="field_subImage3">Sub Image 3</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('subImage3ContentType')!.value + ';base64,' + editForm.get('subImage3')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('subImage3')!.value"
+              alt="trip image"
+            />
+            <div *ngIf="editForm.get('subImage3')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('subImage3ContentType')!.value }}, {{ byteSize(editForm.get('subImage3')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('subImage3', 'subImage3ContentType', 'file_subImage3')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_subImage3"
+              data-cy="subImage3"
+              (change)="setFileData($event, 'subImage3', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="subImage3" id="field_subImage3" data-cy="subImage3" formControlName="subImage3" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="subImage3ContentType"
+            id="field_subImage3ContentType"
+            formControlName="subImage3ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.subImage4" for="field_subImage4">Sub Image 4</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('subImage4ContentType')!.value + ';base64,' + editForm.get('subImage4')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('subImage4')!.value"
+              alt="trip image"
+            />
+            <div *ngIf="editForm.get('subImage4')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('subImage4ContentType')!.value }}, {{ byteSize(editForm.get('subImage4')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('subImage4', 'subImage4ContentType', 'file_subImage4')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_subImage4"
+              data-cy="subImage4"
+              (change)="setFileData($event, 'subImage4', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="subImage4" id="field_subImage4" data-cy="subImage4" formControlName="subImage4" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="subImage4ContentType"
+            id="field_subImage4ContentType"
+            formControlName="subImage4ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.subImage5" for="field_subImage5">Sub Image 5</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('subImage5ContentType')!.value + ';base64,' + editForm.get('subImage5')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('subImage5')!.value"
+              alt="trip image"
+            />
+            <div *ngIf="editForm.get('subImage5')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('subImage5ContentType')!.value }}, {{ byteSize(editForm.get('subImage5')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('subImage5', 'subImage5ContentType', 'file_subImage5')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_subImage5"
+              data-cy="subImage5"
+              (change)="setFileData($event, 'subImage5', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="subImage5" id="field_subImage5" data-cy="subImage5" formControlName="subImage5" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="subImage5ContentType"
+            id="field_subImage5ContentType"
+            formControlName="subImage5ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.subImage6" for="field_subImage6">Sub Image 6</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('subImage6ContentType')!.value + ';base64,' + editForm.get('subImage6')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('subImage6')!.value"
+              alt="trip image"
+            />
+            <div *ngIf="editForm.get('subImage6')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('subImage6ContentType')!.value }}, {{ byteSize(editForm.get('subImage6')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('subImage6', 'subImage6ContentType', 'file_subImage6')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_subImage6"
+              data-cy="subImage6"
+              (change)="setFileData($event, 'subImage6', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="subImage6" id="field_subImage6" data-cy="subImage6" formControlName="subImage6" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="subImage6ContentType"
+            id="field_subImage6ContentType"
+            formControlName="subImage6ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.tripDescription" for="field_tripDescription">Trip Description</label>
+          <textarea
+            class="form-control"
+            name="tripDescription"
+            id="field_tripDescription"
+            data-cy="tripDescription"
+            formControlName="tripDescription"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.combinedMap" for="field_combinedMap">Combined Map</label>
+          <input
+            type="text"
+            class="form-control"
+            name="combinedMap"
+            id="field_combinedMap"
+            data-cy="combinedMap"
+            formControlName="combinedMap"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.relatedEvents" for="field_relatedEvents">Related Events</label>
+          <input
+            type="text"
+            class="form-control"
+            name="relatedEvents"
+            id="field_relatedEvents"
+            data-cy="relatedEvents"
+            formControlName="relatedEvents"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.subImage1Description" for="field_subImage1Description"
+            >Sub Image 1 Description</label
+          >
+          <textarea
+            class="form-control"
+            name="subImage1Description"
+            id="field_subImage1Description"
+            data-cy="subImage1Description"
+            formControlName="subImage1Description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.subImage2Description" for="field_subImage2Description"
+            >Sub Image 2 Description</label
+          >
+          <textarea
+            class="form-control"
+            name="subImage2Description"
+            id="field_subImage2Description"
+            data-cy="subImage2Description"
+            formControlName="subImage2Description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.subImage3Description" for="field_subImage3Description"
+            >Sub Image 3 Description</label
+          >
+          <textarea
+            class="form-control"
+            name="subImage3Description"
+            id="field_subImage3Description"
+            data-cy="subImage3Description"
+            formControlName="subImage3Description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.subImage4Description" for="field_subImage4Description"
+            >Sub Image 4 Description</label
+          >
+          <textarea
+            class="form-control"
+            name="subImage4Description"
+            id="field_subImage4Description"
+            data-cy="subImage4Description"
+            formControlName="subImage4Description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.subImage5Description" for="field_subImage5Description"
+            >Sub Image 5 Description</label
+          >
+          <textarea
+            class="form-control"
+            name="subImage5Description"
+            id="field_subImage5Description"
+            data-cy="subImage5Description"
+            formControlName="subImage5Description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.subImage6Description" for="field_subImage6Description"
+            >Sub Image 6 Description</label
+          >
+          <textarea
+            class="form-control"
+            name="subImage6Description"
+            id="field_subImage6Description"
+            data-cy="subImage6Description"
+            formControlName="subImage6Description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.activeSubImages" for="field_activeSubImages">Active Sub Images</label>
+          <input
+            type="number"
+            class="form-control"
+            name="activeSubImages"
+            id="field_activeSubImages"
+            data-cy="activeSubImages"
+            formControlName="activeSubImages"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.activeRelatedEvents" for="field_activeRelatedEvents"
+            >Active Related Events</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="activeRelatedEvents"
+            id="field_activeRelatedEvents"
+            data-cy="activeRelatedEvents"
+            formControlName="activeRelatedEvents"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.transportationDetails" for="field_transportationDetails"
+            >Transportation Details</label
+          >
+          <textarea
+            class="form-control"
+            name="transportationDetails"
+            id="field_transportationDetails"
+            data-cy="transportationDetails"
+            formControlName="transportationDetails"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.costDetails" for="field_costDetails">Cost Details</label>
+          <textarea
+            class="form-control"
+            name="costDetails"
+            id="field_costDetails"
+            data-cy="costDetails"
+            formControlName="costDetails"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.accomodationDetails" for="field_accomodationDetails"
+            >Accomodation Details</label
+          >
+          <textarea
+            class="form-control"
+            name="accomodationDetails"
+            id="field_accomodationDetails"
+            data-cy="accomodationDetails"
+            formControlName="accomodationDetails"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.relatedLinks" for="field_relatedLinks">Related Links</label>
+          <textarea
+            class="form-control"
+            name="relatedLinks"
+            id="field_relatedLinks"
+            data-cy="relatedLinks"
+            formControlName="relatedLinks"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.startDate" for="field_startDate">Start Date</label>
+          <div class="input-group">
+            <input
+              id="field_startDate"
+              data-cy="startDate"
+              type="text"
+              class="form-control"
+              name="startDate"
+              ngbDatepicker
+              #startDateDp="ngbDatepicker"
+              formControlName="startDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('startDate')!.invalid && (editForm.get('startDate')!.dirty || editForm.get('startDate')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('startDate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.trip.endDate" for="field_endDate">End Date</label>
+          <div class="input-group">
+            <input
+              id="field_endDate"
+              data-cy="endDate"
+              type="text"
+              class="form-control"
+              name="endDate"
+              ngbDatepicker
+              #endDateDp="ngbDatepicker"
+              formControlName="endDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="endDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('endDate')!.invalid && (editForm.get('endDate')!.dirty || editForm.get('endDate')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('endDate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

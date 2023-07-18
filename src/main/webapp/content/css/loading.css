@@ -150,11 +150,11 @@
   -webkit-animation-delay: 0s;
   animation-delay: 0s;
 }
-p.blueText {
+span.blueText {
   color: #5555e7;
   font-weight: bold;
 }
-p.greenText {
+span.greenText {
   color: #1bf31b;
   font-weight: bold;
   margin-inline-start: 2em;
