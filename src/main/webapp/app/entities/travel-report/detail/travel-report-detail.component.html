@@ -1,9 +1,11 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="travelReport">
-      <h2 data-cy="travelReportDetailsHeading"><span jhiTranslate="hikesApp.travelReport.detail.title">Travel Report</span></h2>
+      <h2 data-cy="travelReportDetailsHeading">
+        <span>{{ travelReport.reportName }}</span>
+      </h2>
 
-      <hr />
+      <!--      <hr />
 
       <jhi-alert-error></jhi-alert-error>
 
@@ -175,8 +177,189 @@
             <a [routerLink]="['/trip', travelReport.trip.id, 'view']">{{ travelReport.trip.id }}</a>
           </div>
         </dd>
-      </dl>
+      </dl>-->
+      <jhi-alert-error></jhi-alert-error>
 
+      <jhi-alert></jhi-alert>
+
+      <br />
+      <ol class="list-group list-group-item-primary">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <br />
+            <img
+              [src]="'data:' + travelReport.reportMainImageContentType + ';base64,' + travelReport.reportMainImage"
+              class="d-block w-100"
+              alt="..."
+            />
+            <br />
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold" style="margin-left: 0.5em"><span class="largerFont text-info">Report Date</span></div>
+            {{ travelReport.reportDate | formatMediumDate }}
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div [innerHTML]="travelReport.reportDescription"></div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="fw-bold" style="margin-left: 0.5em"><span class="largerFont text-info">Interesting Places</span></div>
+          <br />
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" *ngIf="travelReport.reportSubImage1">
+              <a
+                class="nav-link active"
+                id="home-tab-sub-image-1"
+                (click)="chooseSubImageTab('1')"
+                data-toggle="tab"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >{{ travelReport.reportSubImageName }}</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="travelReport.reportSubImage2">
+              <a
+                class="nav-link"
+                id="home-tab-sub-image-2"
+                (click)="chooseSubImageTab('2')"
+                data-toggle="tab"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >{{ travelReport.reportSubImage2Name }}</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="travelReport.reportSubImage3">
+              <a
+                class="nav-link"
+                id="home-tab-sub-image-3"
+                (click)="chooseSubImageTab('3')"
+                data-toggle="tab"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >{{ travelReport.reportSubImage3Name }}</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="travelReport.reportSubImage4">
+              <a
+                class="nav-link"
+                id="home-tab-sub-image-4"
+                (click)="chooseSubImageTab('4')"
+                data-toggle="tab"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >{{ travelReport.reportSubImage4Name }}</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="travelReport.reportSubImage5">
+              <a
+                class="nav-link"
+                id="home-tab-sub-image-5"
+                (click)="chooseSubImageTab('5')"
+                data-toggle="tab"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >{{ travelReport.reportSubImage5Name }}</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="travelReport.reportSubImage6">
+              <a
+                class="nav-link"
+                id="home-tab-sub-image-6"
+                (click)="chooseSubImageTab('6')"
+                data-toggle="tab"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >{{ travelReport.reportSubImage6Name }}</a
+              >
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home-sub-image-content-1" role="tabpanel" aria-labelledby="home-tab">
+              <div *ngIf="travelReport.reportSubImage1" class="row">
+                <a (click)="openFile(travelReport.reportSubImage1, travelReport.reportSubImage1ContentType)">
+                  <img
+                    [src]="'data:' + travelReport.reportSubImage1ContentType + ';base64,' + travelReport.reportSubImage1"
+                    style="max-width: 10em"
+                    alt="trip image"
+                  />
+                </a>
+                <span>{{ travelReport.reportSubImage1Description }}</span>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="home-sub-image-content-2" role="tabpanel" aria-labelledby="home-tab">
+              <div *ngIf="travelReport.reportSubImage2" class="row">
+                <a (click)="openFile(travelReport.reportSubImage2, travelReport.reportSubImage2ContentType)">
+                  <img
+                    [src]="'data:' + travelReport.reportSubImage2ContentType + ';base64,' + travelReport.reportSubImage2"
+                    style="max-width: 10em"
+                    alt="trip image"
+                  />
+                </a>
+                <span>{{ travelReport.reportSubImage2Description }}</span>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="home-sub-image-content-3" role="tabpanel" aria-labelledby="home-tab">
+              <div *ngIf="travelReport.reportSubImage3" class="row">
+                <a (click)="openFile(travelReport.reportSubImage3, travelReport.reportSubImage3ContentType)">
+                  <img
+                    [src]="'data:' + travelReport.reportSubImage3ContentType + ';base64,' + travelReport.reportSubImage3"
+                    style="max-width: 10em"
+                    alt="trip image"
+                  />
+                </a>
+                <span>{{ travelReport.reportSubImage3Description }}</span>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="home-sub-image-content-4" role="tabpanel" aria-labelledby="home-tab">
+              <div *ngIf="travelReport.reportSubImage4" class="row">
+                <a (click)="openFile(travelReport.reportSubImage4, travelReport.reportSubImage4ContentType)">
+                  <img
+                    [src]="'data:' + travelReport.reportSubImage4ContentType + ';base64,' + travelReport.reportSubImage4"
+                    style="max-width: 10em"
+                    alt="trip image"
+                  />
+                </a>
+                <span>{{ travelReport.reportSubImage4Description }}</span>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="home-sub-image-content-5" role="tabpanel" aria-labelledby="home-tab">
+              <div *ngIf="travelReport.reportSubImage5" class="row">
+                <a (click)="openFile(travelReport.reportSubImage5, travelReport.reportSubImage5ContentType)">
+                  <img
+                    [src]="'data:' + travelReport.reportSubImage5ContentType + ';base64,' + travelReport.reportSubImage5"
+                    style="max-width: 10em"
+                    alt="trip image"
+                  />
+                </a>
+                <span>{{ travelReport.reportSubImage5Description }}</span>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="home-sub-image-content-6" role="tabpanel" aria-labelledby="home-tab">
+              <div *ngIf="travelReport.reportSubImage6" class="row">
+                <a (click)="openFile(travelReport.reportSubImage6, travelReport.reportSubImage6ContentType)">
+                  <img
+                    [src]="'data:' + travelReport.reportSubImage6ContentType + ';base64,' + travelReport.reportSubImage6"
+                    style="max-width: 10em"
+                    alt="trip image"
+                  />
+                </a>
+                <span>{{ travelReport.reportSubImage6Description }}</span>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ol>
+      <br />
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
       </button>

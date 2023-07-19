@@ -34,12 +34,12 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
+          <!--          <th scope="col" jhiSortBy="id">
             <div class="d-flex">
               <span jhiTranslate="global.field.id">ID</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
-          </th>
+          </th>-->
           <th scope="col" jhiSortBy="reportName">
             <div class="d-flex">
               <span jhiTranslate="hikesApp.travelReport.reportName">Report Name</span>
@@ -52,25 +52,25 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="reportEventIds">
+          <!--          <th scope="col" jhiSortBy="reportEventIds">
             <div class="d-flex">
               <span jhiTranslate="hikesApp.travelReport.reportEventIds">Report Event Ids</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
-          </th>
-          <th scope="col" jhiSortBy="reportDescription">
+          </th>-->
+          <!--          <th scope="col" jhiSortBy="reportDescription">
             <div class="d-flex">
               <span jhiTranslate="hikesApp.travelReport.reportDescription">Report Description</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
-          </th>
-          <th scope="col" jhiSortBy="reportMainImage">
+          </th>-->
+          <!--          <th scope="col" jhiSortBy="reportMainImage">
             <div class="d-flex">
               <span jhiTranslate="hikesApp.travelReport.reportMainImage">Report Main Image</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
-          </th>
-          <th scope="col" jhiSortBy="reportSubImage1">
+          </th>-->
+          <!--          <th scope="col" jhiSortBy="reportSubImage1">
             <div class="d-flex">
               <span jhiTranslate="hikesApp.travelReport.reportSubImage1">Report Sub Image 1</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
@@ -184,17 +184,17 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col"></th>
+          <th scope="col"></th>-->
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let travelReport of travelReports; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <!--          <td>
             <a [routerLink]="['/travel-report', travelReport.id, 'view']">{{ travelReport.id }}</a>
-          </td>
+          </td>-->
           <td>{{ travelReport.reportName }}</td>
           <td>{{ travelReport.reportDate | formatMediumDate }}</td>
-          <td>{{ travelReport.reportEventIds }}</td>
+          <!--          <td>{{ travelReport.reportEventIds }}</td>
           <td>{{ travelReport.reportDescription }}</td>
           <td>
             <a
@@ -317,7 +317,7 @@
             <div *ngIf="travelReport.trip">
               <a [routerLink]="['/trip', travelReport.trip.id, 'view']">{{ travelReport.trip.id }}</a>
             </div>
-          </td>
+          </td>-->
           <td class="text-end">
             <div class="btn-group">
               <button

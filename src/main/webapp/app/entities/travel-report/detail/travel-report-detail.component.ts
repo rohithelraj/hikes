@@ -30,4 +30,25 @@ export class TravelReportDetailComponent implements OnInit {
   previousState(): void {
     window.history.back();
   }
+
+  chooseSubImageTab(s: string) {
+    this.removeSubImageTabClasses();
+    let tab = document.getElementById('home-tab-sub-image-' + s);
+    // @ts-ignore
+    tab.className = 'nav-link active';
+    let content = document.getElementById('home-sub-image-content-' + s);
+    // @ts-ignore
+    content.className = 'tab-pane fade show active';
+  }
+
+  private removeSubImageTabClasses() {
+    for (let i = 1; i < 7; i++) {
+      let tab = document.getElementById('home-tab-sub-image-' + i);
+      // @ts-ignore
+      tab.className = 'nav-link';
+      let content = document.getElementById('home-sub-image-content-' + i);
+      // @ts-ignore
+      content.className = 'tab-pane fade';
+    }
+  }
 }
