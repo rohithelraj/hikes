@@ -10,6 +10,7 @@ import { TripService } from '../service/trip.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 import { EventManager, EventWithContent } from 'app/core/util/event-manager.service';
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'jhi-trip-update',
@@ -20,7 +21,60 @@ export class TripUpdateComponent implements OnInit {
   trip: ITrip | null = null;
 
   editForm: TripFormGroup = this.tripFormService.createTripFormGroup();
-
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '0',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Enter text here...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [
+      { class: 'arial', name: 'Arial' },
+      { class: 'times-new-roman', name: 'Times New Roman' },
+      { class: 'calibri', name: 'Calibri' },
+      { class: 'comic-sans-ms', name: 'Comic Sans MS' },
+    ],
+    customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText',
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      [
+        'strikeThrough',
+        'subscript',
+        'superscript',
+        'justifyLeft',
+        'justifyCenter',
+        'justifyRight',
+        'justifyFull',
+        'indent',
+        'outdent',
+        'insertUnorderedList',
+        'insertOrderedList',
+      ],
+      ['insertImage', 'insertVideo'],
+    ],
+  };
   constructor(
     protected dataUtils: DataUtils,
     protected eventManager: EventManager,
@@ -101,4 +155,6 @@ export class TripUpdateComponent implements OnInit {
     this.trip = trip;
     this.tripFormService.resetForm(this.editForm, trip);
   }
+
+  navigateTo(descriptionDetails: string, description: string) {}
 }

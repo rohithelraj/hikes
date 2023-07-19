@@ -26,7 +26,6 @@ export class TravelReportUpdateComponent implements OnInit {
   tripsSharedCollection: ITrip[] = [];
 
   editForm: TravelReportFormGroup = this.travelReportFormService.createTravelReportFormGroup();
-  htmlContent = '';
 
   config: AngularEditorConfig = {
     editable: true,
