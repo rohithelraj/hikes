@@ -15,7 +15,7 @@ const travelReportRoute: Routes = [
     data: {
       defaultSort: 'id,' + ASC,
     },
-    canActivate: [UserRouteAccessService],
+    //canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/view',
@@ -23,7 +23,7 @@ const travelReportRoute: Routes = [
     resolve: {
       travelReport: TravelReportRoutingResolveService,
     },
-    canActivate: [UserRouteAccessService],
+    //canActivate: [UserRouteAccessService],
   },
   {
     path: 'new',

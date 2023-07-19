@@ -9,7 +9,7 @@
       </button>
 
       <button
-        *jhiHasAnyAuthority="'ROLE_ADMIN'"
+        *jhiHasAnyAuthority="'ROLE_USER'"
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-event-plan"
@@ -181,7 +181,7 @@
               </button>
 
               <button
-                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                *jhiHasAnyAuthority="'ROLE_USER'"
                 type="submit"
                 [routerLink]="['/event-plan', eventPlan.id, 'edit']"
                 class="btn btn-primary btn-sm"
@@ -192,7 +192,7 @@
               </button>
 
               <button
-                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                *jhiHasAnyAuthority="'ROLE_USER'"
                 type="submit"
                 (click)="delete(eventPlan)"
                 class="btn btn-danger btn-sm"
