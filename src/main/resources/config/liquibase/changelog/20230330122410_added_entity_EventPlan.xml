@@ -29,12 +29,6 @@
             <column name="event_n_ame" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="description" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="travel_schedule" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
             <column name="hike_main_image" type="${blobType}">
                 <constraints nullable="true" />
             </column>
@@ -47,16 +41,22 @@
             <column name="hike_highlight_image_1_content_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="hike_highlight_image_1_description" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
             <column name="hike_highlight_image_2" type="${blobType}">
                 <constraints nullable="true" />
             </column>
             <column name="hike_highlight_image_2_content_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="hike_highlight_image_2_description" type="varchar(255)">
+            <column name="event_description" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="event_travel_schedule" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="hiking_highlight_image_1_description" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="hiking_highlight_image_2_description" type="${clobType}">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -87,16 +87,16 @@
             <column name="event_end_time" type="date"/>
             <column name="komoot_map" type="string"/>
             <column name="event_n_ame" type="string"/>
-            <column name="description" type="string"/>
-            <column name="travel_schedule" type="string"/>
             <column name="hike_main_image" type="blob"/>
             <column name="hike_main_image_content_type" type="string"/>
             <column name="hike_highlight_image_1" type="blob"/>
             <column name="hike_highlight_image_1_content_type" type="string"/>
-            <column name="hike_highlight_image_1_description" type="string"/>
             <column name="hike_highlight_image_2" type="blob"/>
             <column name="hike_highlight_image_2_content_type" type="string"/>
-            <column name="hike_highlight_image_2_description" type="string"/>
+            <column name="event_description" type="clob"/>
+            <column name="event_travel_schedule" type="clob"/>
+            <column name="hiking_highlight_image_1_description" type="clob"/>
+            <column name="hiking_highlight_image_2_description" type="clob"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

@@ -25,13 +25,13 @@ describe('EventPlan Form Service', () => {
             eventEndTime: expect.any(Object),
             komootMap: expect.any(Object),
             eventNAme: expect.any(Object),
-            description: expect.any(Object),
-            travelSchedule: expect.any(Object),
             hikeMainImage: expect.any(Object),
             hikeHighlightImage1: expect.any(Object),
-            hikeHighlightImage1Description: expect.any(Object),
             hikeHighlightImage2: expect.any(Object),
-            hikeHighlightImage2Description: expect.any(Object),
+            eventDescription: expect.any(Object),
+            eventTravelSchedule: expect.any(Object),
+            hikingHighlightImage1Description: expect.any(Object),
+            hikingHighlightImage2Description: expect.any(Object),
           })
         );
       });
@@ -47,13 +47,13 @@ describe('EventPlan Form Service', () => {
             eventEndTime: expect.any(Object),
             komootMap: expect.any(Object),
             eventNAme: expect.any(Object),
-            description: expect.any(Object),
-            travelSchedule: expect.any(Object),
             hikeMainImage: expect.any(Object),
             hikeHighlightImage1: expect.any(Object),
-            hikeHighlightImage1Description: expect.any(Object),
             hikeHighlightImage2: expect.any(Object),
-            hikeHighlightImage2Description: expect.any(Object),
+            eventDescription: expect.any(Object),
+            eventTravelSchedule: expect.any(Object),
+            hikingHighlightImage1Description: expect.any(Object),
+            hikingHighlightImage2Description: expect.any(Object),
           })
         );
       });

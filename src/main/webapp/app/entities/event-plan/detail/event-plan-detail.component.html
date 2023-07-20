@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center">
-  <div class="col-8">
+  <div class="col-12">
     <div *ngIf="eventPlan">
       <jhi-alert-error></jhi-alert-error>
 
@@ -9,46 +9,151 @@
       <br />
       <ol class="list-group list-group-item-primary">
         <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div id="carouselTravelReportSlideIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active" id="main-image-carousel" *ngIf="eventPlan.hikeMainImage">
+                <img
+                  [src]="'data:' + eventPlan.hikeMainImageContentType + ';base64,' + eventPlan.hikeMainImage"
+                  alt="..."
+                  class="img-fluid"
+                />
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="text-white">{{ eventPlan.eventNAme }}</h5>
+                </div>
+              </div>
+              <div class="carousel-item" id="sub-image-1-carousel" *ngIf="eventPlan.hikeHighlightImage1">
+                <img
+                  [src]="'data:' + eventPlan.hikeHighlightImage1ContentType + ';base64,' + eventPlan.hikeHighlightImage1"
+                  alt="..."
+                  class="img-fluid"
+                />
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="text-white">Highlights</h5>
+                </div>
+              </div>
+              <div class="carousel-item" id="sub-image-2-carousel" *ngIf="eventPlan.hikeHighlightImage2">
+                <img
+                  [src]="'data:' + eventPlan.hikeHighlightImage2ContentType + ';base64,' + eventPlan.hikeHighlightImage2"
+                  alt="..."
+                  class="img-fluid"
+                />
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="text-white">Highlights</h5>
+                </div>
+              </div>
+            </div>
+            <a class="carousel-control-prev" (click)="carouselPrevious()" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" (click)="carouselNext()" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
+            <div class="fw-bold" style="margin-left: 0.5em"><span class="largerFont text-info">Event Date</span></div>
             <br />
-            <img
-              [src]="'data:' + eventPlan.hikeMainImageContentType + ';base64,' + eventPlan.hikeMainImage"
-              class="d-block w-100"
-              alt="..."
-            />
+            <span class="text-success">{{ eventPlan.eventDate | formatMediumDate }}</span>
+            <p></p>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold" style="margin-left: 0.5em"><span class="largerFont text-info">Event Start Time</span></div>
             <br />
+            <span class="text-success">{{ eventPlan.eventStartTime | formatMediumDatetime }}</span>
+            <p></p>
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
-            <div class="fw-bold"><span class="largerFont badge rounded-pill text-bg-info">Event Date</span></div>
-            {{ eventPlan.eventDate | formatMediumDate }}
+            <div class="fw-bold" style="margin-left: 0.5em"><span class="largerFont text-info">Event End Time</span></div>
+            <br />
+            <span class="text-success">{{ eventPlan.eventEndTime | formatMediumDatetime }}</span>
+            <p></p>
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
-            <div class="fw-bold"><span class="largerFont badge rounded-pill text-bg-info">Event Start Time</span></div>
-            {{ eventPlan.eventStartTime | formatMediumDatetime }}
+            <div class="fw-bold" style="margin-left: 0.5em"><span class="largerFont text-info">Travel Schedule</span></div>
+            <br />
+            <div [innerHTML]="eventPlan.eventTravelSchedule"></div>
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
-            <div class="fw-bold"><span class="largerFont badge rounded-pill text-bg-info">Event End Time</span></div>
-            {{ eventPlan.eventEndTime | formatMediumDatetime }}
+            <div [innerHTML]="eventPlan.eventDescription"></div>
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold"><span class="largerFont badge rounded-pill text-bg-info">Travel Schedule</span></div>
-            <div [innerHTML]="eventPlan.travelSchedule"></div>
-          </div>
+          <iframe [src]="komootUrl" style="width: 100%" height="700" title="Komoot map"></iframe>
         </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <iframe [src]="komootUrl" style="width: 100em" height="700" title="Komoot map"></iframe>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div [innerHTML]="eventPlan.description"></div>
+        <li class="list-group-item" *ngIf="eventPlan.hikeHighlightImage1 || eventPlan.hikeHighlightImage2">
+          <div class="fw-bold" style="margin-left: 0.5em"><span class="largerFont text-info">Interesting Places</span></div>
+          <br />
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" *ngIf="eventPlan.hikeHighlightImage1">
+              <a
+                class="nav-link active"
+                id="home-tab-sub-image-1"
+                (click)="chooseSubImageTab('1')"
+                data-toggle="tab"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >Highlight 1</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="eventPlan.hikeHighlightImage2">
+              <a
+                class="nav-link"
+                id="home-tab-sub-image-2"
+                (click)="chooseSubImageTab('2')"
+                data-toggle="tab"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >Highlight 2</a
+              >
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home-sub-image-content-1" role="tabpanel" aria-labelledby="home-tab">
+              <br />
+              <div *ngIf="eventPlan.hikeHighlightImage1" class="row">
+                <a (click)="openFile(eventPlan.hikeHighlightImage1, eventPlan.hikeHighlightImage1ContentType)">
+                  <img
+                    [src]="'data:' + eventPlan.hikeHighlightImage1ContentType + ';base64,' + eventPlan.hikeHighlightImage1"
+                    style="max-width: 10em"
+                    alt="trip image"
+                    class="img-thumbnail"
+                  />
+                </a>
+                <span><br />{{ eventPlan.hikingHighlightImage1Description }}</span>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="home-sub-image-content-2" role="tabpanel" aria-labelledby="home-tab">
+              <br />
+              <div *ngIf="eventPlan.hikeHighlightImage2" class="row">
+                <a (click)="openFile(eventPlan.hikeHighlightImage2, eventPlan.hikeHighlightImage2ContentType)">
+                  <img
+                    [src]="'data:' + eventPlan.hikeHighlightImage2ContentType + ';base64,' + eventPlan.hikeHighlightImage2"
+                    style="max-width: 10em"
+                    alt="trip image"
+                    class="img-thumbnail"
+                  />
+                </a>
+                <span><br />{{ eventPlan.hikingHighlightImage2Description }}</span>
+              </div>
+            </div>
           </div>
         </li>
       </ol>

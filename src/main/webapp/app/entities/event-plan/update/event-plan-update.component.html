@@ -98,30 +98,6 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hikesApp.eventPlan.description" for="field_description">Description</label>
-          <textarea
-            type="text"
-            class="form-control"
-            name="description"
-            id="field_description"
-            data-cy="description"
-            formControlName="description"
-          ></textarea>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hikesApp.eventPlan.travelSchedule" for="field_travelSchedule">Travel Schedule</label>
-          <input
-            type="text"
-            class="form-control"
-            name="travelSchedule"
-            id="field_travelSchedule"
-            data-cy="travelSchedule"
-            formControlName="travelSchedule"
-          />
-        </div>
-
-        <div class="row mb-3">
           <label class="form-label" jhiTranslate="hikesApp.eventPlan.hikeMainImage" for="field_hikeMainImage">Hike Main Image</label>
           <div>
             <img
@@ -221,23 +197,6 @@
         </div>
 
         <div class="row mb-3">
-          <label
-            class="form-label"
-            jhiTranslate="hikesApp.eventPlan.hikeHighlightImage1Description"
-            for="field_hikeHighlightImage1Description"
-            >Hike Highlight Image 1 Description</label
-          >
-          <textarea
-            type="text"
-            class="form-control"
-            name="hikeHighlightImage1Description"
-            id="field_hikeHighlightImage1Description"
-            data-cy="hikeHighlightImage1Description"
-            formControlName="hikeHighlightImage1Description"
-          ></textarea>
-        </div>
-
-        <div class="row mb-3">
           <label class="form-label" jhiTranslate="hikesApp.eventPlan.hikeHighlightImage2" for="field_hikeHighlightImage2"
             >Hike Highlight Image 2</label
           >
@@ -290,20 +249,61 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.eventPlan.eventDescription" for="field_eventDescription"
+            >Event Description</label
+          >
+          <textarea
+            class="form-control"
+            name="eventDescription"
+            id="field_eventDescription"
+            data-cy="eventDescription"
+            formControlName="eventDescription"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hikesApp.eventPlan.eventTravelSchedule" for="field_eventTravelSchedule"
+            >Event Travel Schedule</label
+          >
+          <textarea
+            class="form-control"
+            name="eventTravelSchedule"
+            id="field_eventTravelSchedule"
+            data-cy="eventTravelSchedule"
+            formControlName="eventTravelSchedule"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
           <label
             class="form-label"
-            jhiTranslate="hikesApp.eventPlan.hikeHighlightImage2Description"
-            for="field_hikeHighlightImage2Description"
-            >Hike Highlight Image 2 Description</label
+            jhiTranslate="hikesApp.eventPlan.hikingHighlightImage1Description"
+            for="field_hikingHighlightImage1Description"
+            >Hiking Highlight Image 1 Description</label
           >
-          <input
-            type="text"
+          <textarea
             class="form-control"
-            name="hikeHighlightImage2Description"
-            id="field_hikeHighlightImage2Description"
-            data-cy="hikeHighlightImage2Description"
-            formControlName="hikeHighlightImage2Description"
-          />
+            name="hikingHighlightImage1Description"
+            id="field_hikingHighlightImage1Description"
+            data-cy="hikingHighlightImage1Description"
+            formControlName="hikingHighlightImage1Description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="hikesApp.eventPlan.hikingHighlightImage2Description"
+            for="field_hikingHighlightImage2Description"
+            >Hiking Highlight Image 2 Description</label
+          >
+          <textarea
+            class="form-control"
+            name="hikingHighlightImage2Description"
+            id="field_hikingHighlightImage2Description"
+            data-cy="hikingHighlightImage2Description"
+            formControlName="hikingHighlightImage2Description"
+          ></textarea>
         </div>
       </div>
 

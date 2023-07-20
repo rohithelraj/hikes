@@ -39,12 +39,6 @@ public class EventPlan implements Serializable {
     @Column(name = "event_n_ame", nullable = false)
     private String eventNAme;
 
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "travel_schedule")
-    private String travelSchedule;
-
     @Lob
     @Column(name = "hike_main_image")
     private byte[] hikeMainImage;
@@ -59,9 +53,6 @@ public class EventPlan implements Serializable {
     @Column(name = "hike_highlight_image_1_content_type")
     private String hikeHighlightImage1ContentType;
 
-    @Column(name = "hike_highlight_image_1_description")
-    private String hikeHighlightImage1Description;
-
     @Lob
     @Column(name = "hike_highlight_image_2")
     private byte[] hikeHighlightImage2;
@@ -69,8 +60,21 @@ public class EventPlan implements Serializable {
     @Column(name = "hike_highlight_image_2_content_type")
     private String hikeHighlightImage2ContentType;
 
-    @Column(name = "hike_highlight_image_2_description")
-    private String hikeHighlightImage2Description;
+    @Lob
+    @Column(name = "event_description")
+    private String eventDescription;
+
+    @Lob
+    @Column(name = "event_travel_schedule")
+    private String eventTravelSchedule;
+
+    @Lob
+    @Column(name = "hiking_highlight_image_1_description")
+    private String hikingHighlightImage1Description;
+
+    @Lob
+    @Column(name = "hiking_highlight_image_2_description")
+    private String hikingHighlightImage2Description;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -152,32 +156,6 @@ public class EventPlan implements Serializable {
         this.eventNAme = eventNAme;
     }
 
-    public String getDescription() {
-        return this.description;
-    }
-
-    public EventPlan description(String description) {
-        this.setDescription(description);
-        return this;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getTravelSchedule() {
-        return this.travelSchedule;
-    }
-
-    public EventPlan travelSchedule(String travelSchedule) {
-        this.setTravelSchedule(travelSchedule);
-        return this;
-    }
-
-    public void setTravelSchedule(String travelSchedule) {
-        this.travelSchedule = travelSchedule;
-    }
-
     public byte[] getHikeMainImage() {
         return this.hikeMainImage;
     }
@@ -230,19 +208,6 @@ public class EventPlan implements Serializable {
         this.hikeHighlightImage1ContentType = hikeHighlightImage1ContentType;
     }
 
-    public String getHikeHighlightImage1Description() {
-        return this.hikeHighlightImage1Description;
-    }
-
-    public EventPlan hikeHighlightImage1Description(String hikeHighlightImage1Description) {
-        this.setHikeHighlightImage1Description(hikeHighlightImage1Description);
-        return this;
-    }
-
-    public void setHikeHighlightImage1Description(String hikeHighlightImage1Description) {
-        this.hikeHighlightImage1Description = hikeHighlightImage1Description;
-    }
-
     public byte[] getHikeHighlightImage2() {
         return this.hikeHighlightImage2;
     }
@@ -269,17 +234,56 @@ public class EventPlan implements Serializable {
         this.hikeHighlightImage2ContentType = hikeHighlightImage2ContentType;
     }
 
-    public String getHikeHighlightImage2Description() {
-        return this.hikeHighlightImage2Description;
+    public String getEventDescription() {
+        return this.eventDescription;
     }
 
-    public EventPlan hikeHighlightImage2Description(String hikeHighlightImage2Description) {
-        this.setHikeHighlightImage2Description(hikeHighlightImage2Description);
+    public EventPlan eventDescription(String eventDescription) {
+        this.setEventDescription(eventDescription);
         return this;
     }
 
-    public void setHikeHighlightImage2Description(String hikeHighlightImage2Description) {
-        this.hikeHighlightImage2Description = hikeHighlightImage2Description;
+    public void setEventDescription(String eventDescription) {
+        this.eventDescription = eventDescription;
+    }
+
+    public String getEventTravelSchedule() {
+        return this.eventTravelSchedule;
+    }
+
+    public EventPlan eventTravelSchedule(String eventTravelSchedule) {
+        this.setEventTravelSchedule(eventTravelSchedule);
+        return this;
+    }
+
+    public void setEventTravelSchedule(String eventTravelSchedule) {
+        this.eventTravelSchedule = eventTravelSchedule;
+    }
+
+    public String getHikingHighlightImage1Description() {
+        return this.hikingHighlightImage1Description;
+    }
+
+    public EventPlan hikingHighlightImage1Description(String hikingHighlightImage1Description) {
+        this.setHikingHighlightImage1Description(hikingHighlightImage1Description);
+        return this;
+    }
+
+    public void setHikingHighlightImage1Description(String hikingHighlightImage1Description) {
+        this.hikingHighlightImage1Description = hikingHighlightImage1Description;
+    }
+
+    public String getHikingHighlightImage2Description() {
+        return this.hikingHighlightImage2Description;
+    }
+
+    public EventPlan hikingHighlightImage2Description(String hikingHighlightImage2Description) {
+        this.setHikingHighlightImage2Description(hikingHighlightImage2Description);
+        return this;
+    }
+
+    public void setHikingHighlightImage2Description(String hikingHighlightImage2Description) {
+        this.hikingHighlightImage2Description = hikingHighlightImage2Description;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
@@ -311,16 +315,16 @@ public class EventPlan implements Serializable {
             ", eventEndTime='" + getEventEndTime() + "'" +
             ", komootMap='" + getKomootMap() + "'" +
             ", eventNAme='" + getEventNAme() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", travelSchedule='" + getTravelSchedule() + "'" +
             ", hikeMainImage='" + getHikeMainImage() + "'" +
             ", hikeMainImageContentType='" + getHikeMainImageContentType() + "'" +
             ", hikeHighlightImage1='" + getHikeHighlightImage1() + "'" +
             ", hikeHighlightImage1ContentType='" + getHikeHighlightImage1ContentType() + "'" +
-            ", hikeHighlightImage1Description='" + getHikeHighlightImage1Description() + "'" +
             ", hikeHighlightImage2='" + getHikeHighlightImage2() + "'" +
             ", hikeHighlightImage2ContentType='" + getHikeHighlightImage2ContentType() + "'" +
-            ", hikeHighlightImage2Description='" + getHikeHighlightImage2Description() + "'" +
+            ", eventDescription='" + getEventDescription() + "'" +
+            ", eventTravelSchedule='" + getEventTravelSchedule() + "'" +
+            ", hikingHighlightImage1Description='" + getHikingHighlightImage1Description() + "'" +
+            ", hikingHighlightImage2Description='" + getHikingHighlightImage2Description() + "'" +
             "}";
     }
 }

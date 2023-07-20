@@ -37,16 +37,16 @@ type EventPlanFormGroupContent = {
   eventEndTime: FormControl<EventPlanFormRawValue['eventEndTime']>;
   komootMap: FormControl<EventPlanFormRawValue['komootMap']>;
   eventNAme: FormControl<EventPlanFormRawValue['eventNAme']>;
-  description: FormControl<EventPlanFormRawValue['description']>;
-  travelSchedule: FormControl<EventPlanFormRawValue['travelSchedule']>;
   hikeMainImage: FormControl<EventPlanFormRawValue['hikeMainImage']>;
   hikeMainImageContentType: FormControl<EventPlanFormRawValue['hikeMainImageContentType']>;
   hikeHighlightImage1: FormControl<EventPlanFormRawValue['hikeHighlightImage1']>;
   hikeHighlightImage1ContentType: FormControl<EventPlanFormRawValue['hikeHighlightImage1ContentType']>;
-  hikeHighlightImage1Description: FormControl<EventPlanFormRawValue['hikeHighlightImage1Description']>;
   hikeHighlightImage2: FormControl<EventPlanFormRawValue['hikeHighlightImage2']>;
   hikeHighlightImage2ContentType: FormControl<EventPlanFormRawValue['hikeHighlightImage2ContentType']>;
-  hikeHighlightImage2Description: FormControl<EventPlanFormRawValue['hikeHighlightImage2Description']>;
+  eventDescription: FormControl<EventPlanFormRawValue['eventDescription']>;
+  eventTravelSchedule: FormControl<EventPlanFormRawValue['eventTravelSchedule']>;
+  hikingHighlightImage1Description: FormControl<EventPlanFormRawValue['hikingHighlightImage1Description']>;
+  hikingHighlightImage2Description: FormControl<EventPlanFormRawValue['hikingHighlightImage2Description']>;
 };
 
 export type EventPlanFormGroup = FormGroup<EventPlanFormGroupContent>;
@@ -77,16 +77,16 @@ export class EventPlanFormService {
       eventNAme: new FormControl(eventPlanRawValue.eventNAme, {
         validators: [Validators.required],
       }),
-      description: new FormControl(eventPlanRawValue.description),
-      travelSchedule: new FormControl(eventPlanRawValue.travelSchedule),
       hikeMainImage: new FormControl(eventPlanRawValue.hikeMainImage),
       hikeMainImageContentType: new FormControl(eventPlanRawValue.hikeMainImageContentType),
       hikeHighlightImage1: new FormControl(eventPlanRawValue.hikeHighlightImage1),
       hikeHighlightImage1ContentType: new FormControl(eventPlanRawValue.hikeHighlightImage1ContentType),
-      hikeHighlightImage1Description: new FormControl(eventPlanRawValue.hikeHighlightImage1Description),
       hikeHighlightImage2: new FormControl(eventPlanRawValue.hikeHighlightImage2),
       hikeHighlightImage2ContentType: new FormControl(eventPlanRawValue.hikeHighlightImage2ContentType),
-      hikeHighlightImage2Description: new FormControl(eventPlanRawValue.hikeHighlightImage2Description),
+      eventDescription: new FormControl(eventPlanRawValue.eventDescription),
+      eventTravelSchedule: new FormControl(eventPlanRawValue.eventTravelSchedule),
+      hikingHighlightImage1Description: new FormControl(eventPlanRawValue.hikingHighlightImage1Description),
+      hikingHighlightImage2Description: new FormControl(eventPlanRawValue.hikingHighlightImage2Description),
     });
   }
 

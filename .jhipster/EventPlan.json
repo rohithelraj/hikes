@@ -26,14 +26,6 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "description",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "travelSchedule",
-      "fieldType": "String"
-    },
-    {
       "fieldName": "hikeMainImage",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "image"
@@ -44,17 +36,29 @@
       "fieldTypeBlobContent": "image"
     },
     {
-      "fieldName": "hikeHighlightImage1Description",
-      "fieldType": "String"
-    },
-    {
       "fieldName": "hikeHighlightImage2",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "image"
     },
     {
-      "fieldName": "hikeHighlightImage2Description",
-      "fieldType": "String"
+      "fieldName": "eventDescription",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "eventTravelSchedule",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "hikingHighlightImage1Description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "hikingHighlightImage2Description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
     }
   ],
   "jpaMetamodelFiltering": false,

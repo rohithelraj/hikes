@@ -28,10 +28,6 @@ public class EventPlanDTO implements Serializable {
     @NotNull
     private String eventNAme;
 
-    private String description;
-
-    private String travelSchedule;
-
     @Lob
     private byte[] hikeMainImage;
 
@@ -41,13 +37,23 @@ public class EventPlanDTO implements Serializable {
     private byte[] hikeHighlightImage1;
 
     private String hikeHighlightImage1ContentType;
-    private String hikeHighlightImage1Description;
 
     @Lob
     private byte[] hikeHighlightImage2;
 
     private String hikeHighlightImage2ContentType;
-    private String hikeHighlightImage2Description;
+
+    @Lob
+    private String eventDescription;
+
+    @Lob
+    private String eventTravelSchedule;
+
+    @Lob
+    private String hikingHighlightImage1Description;
+
+    @Lob
+    private String hikingHighlightImage2Description;
 
     public Long getId() {
         return id;
@@ -97,22 +103,6 @@ public class EventPlanDTO implements Serializable {
         this.eventNAme = eventNAme;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getTravelSchedule() {
-        return travelSchedule;
-    }
-
-    public void setTravelSchedule(String travelSchedule) {
-        this.travelSchedule = travelSchedule;
-    }
-
     public byte[] getHikeMainImage() {
         return hikeMainImage;
     }
@@ -145,14 +135,6 @@ public class EventPlanDTO implements Serializable {
         this.hikeHighlightImage1ContentType = hikeHighlightImage1ContentType;
     }
 
-    public String getHikeHighlightImage1Description() {
-        return hikeHighlightImage1Description;
-    }
-
-    public void setHikeHighlightImage1Description(String hikeHighlightImage1Description) {
-        this.hikeHighlightImage1Description = hikeHighlightImage1Description;
-    }
-
     public byte[] getHikeHighlightImage2() {
         return hikeHighlightImage2;
     }
@@ -169,12 +151,36 @@ public class EventPlanDTO implements Serializable {
         this.hikeHighlightImage2ContentType = hikeHighlightImage2ContentType;
     }
 
-    public String getHikeHighlightImage2Description() {
-        return hikeHighlightImage2Description;
+    public String getEventDescription() {
+        return eventDescription;
     }
 
-    public void setHikeHighlightImage2Description(String hikeHighlightImage2Description) {
-        this.hikeHighlightImage2Description = hikeHighlightImage2Description;
+    public void setEventDescription(String eventDescription) {
+        this.eventDescription = eventDescription;
+    }
+
+    public String getEventTravelSchedule() {
+        return eventTravelSchedule;
+    }
+
+    public void setEventTravelSchedule(String eventTravelSchedule) {
+        this.eventTravelSchedule = eventTravelSchedule;
+    }
+
+    public String getHikingHighlightImage1Description() {
+        return hikingHighlightImage1Description;
+    }
+
+    public void setHikingHighlightImage1Description(String hikingHighlightImage1Description) {
+        this.hikingHighlightImage1Description = hikingHighlightImage1Description;
+    }
+
+    public String getHikingHighlightImage2Description() {
+        return hikingHighlightImage2Description;
+    }
+
+    public void setHikingHighlightImage2Description(String hikingHighlightImage2Description) {
+        this.hikingHighlightImage2Description = hikingHighlightImage2Description;
     }
 
     @Override
@@ -208,13 +214,13 @@ public class EventPlanDTO implements Serializable {
             ", eventEndTime='" + getEventEndTime() + "'" +
             ", komootMap='" + getKomootMap() + "'" +
             ", eventNAme='" + getEventNAme() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", travelSchedule='" + getTravelSchedule() + "'" +
             ", hikeMainImage='" + getHikeMainImage() + "'" +
             ", hikeHighlightImage1='" + getHikeHighlightImage1() + "'" +
-            ", hikeHighlightImage1Description='" + getHikeHighlightImage1Description() + "'" +
             ", hikeHighlightImage2='" + getHikeHighlightImage2() + "'" +
-            ", hikeHighlightImage2Description='" + getHikeHighlightImage2Description() + "'" +
+            ", eventDescription='" + getEventDescription() + "'" +
+            ", eventTravelSchedule='" + getEventTravelSchedule() + "'" +
+            ", hikingHighlightImage1Description='" + getHikingHighlightImage1Description() + "'" +
+            ", hikingHighlightImage2Description='" + getHikingHighlightImage2Description() + "'" +
             "}";
     }
 }

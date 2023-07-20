@@ -22,14 +22,14 @@
       "eventStartTime": "Event Start Time",
       "eventEndTime": "Event End Time",
       "komootMap": "Komoot Map",
-      "eventNAme": "Event Name",
-      "description": "Description",
-      "travelSchedule": "Travel Schedule",
+      "eventNAme": "Event N Ame",
       "hikeMainImage": "Hike Main Image",
       "hikeHighlightImage1": "Hike Highlight Image 1",
-      "hikeHighlightImage1Description": "Hike Highlight Image 1 Description",
       "hikeHighlightImage2": "Hike Highlight Image 2",
-      "hikeHighlightImage2Description": "Hike Highlight Image 2 Description"
+      "eventDescription": "Event Description",
+      "eventTravelSchedule": "Event Travel Schedule",
+      "hikingHighlightImage1Description": "Hiking Highlight Image 1 Description",
+      "hikingHighlightImage2Description": "Hiking Highlight Image 2 Description"
     }
   }
 }

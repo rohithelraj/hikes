@@ -40,4 +40,88 @@ export class EventPlanDetailComponent implements OnInit {
   previousState(): void {
     window.history.back();
   }
+
+  chooseSubImageTab(s: string) {
+    this.removeSubImageTabClasses();
+    let tab = document.getElementById('home-tab-sub-image-' + s);
+    // @ts-ignore
+    tab.className = 'nav-link active';
+    let content = document.getElementById('home-sub-image-content-' + s);
+    // @ts-ignore
+    content.className = 'tab-pane fade show active';
+  }
+  private removeSubImageTabClasses() {
+    for (let i = 1; i < 3; i++) {
+      let tab = document.getElementById('home-tab-sub-image-' + i);
+      // @ts-ignore
+      tab.className = 'nav-link';
+      let content = document.getElementById('home-sub-image-content-' + i);
+      // @ts-ignore
+      content.className = 'tab-pane fade';
+    }
+  }
+  carouselNext() {
+    switchCarousel: {
+      if (this.eventPlan?.hikeMainImage) {
+        let carouselMainImage = document.getElementById('main-image-carousel');
+        // @ts-ignore
+        if (carouselMainImage.className.includes('active')) {
+          // @ts-ignore
+          carouselMainImage.className = 'carousel-item';
+          if (this.eventPlan?.hikeHighlightImage1) {
+            let carouselSubImage1 = document.getElementById('sub-image-1-carousel');
+            // @ts-ignore
+            carouselSubImage1.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+      if (this.eventPlan?.hikeHighlightImage1) {
+        let carouselSubImage1 = document.getElementById('sub-image-1-carousel');
+        // @ts-ignore
+        if (carouselSubImage1.className.includes('active')) {
+          // @ts-ignore
+          carouselSubImage1.className = 'carousel-item';
+          if (this.eventPlan?.hikeHighlightImage2) {
+            let carouselSubImage2 = document.getElementById('sub-image-2-carousel');
+            // @ts-ignore
+            carouselSubImage2.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+    }
+  }
+  carouselPrevious() {
+    switchCarousel: {
+      if (this.eventPlan?.hikeHighlightImage1) {
+        let carouselSubImage1 = document.getElementById('sub-image-1-carousel');
+        // @ts-ignore
+        if (carouselSubImage1.className.includes('active')) {
+          // @ts-ignore
+          carouselSubImage1.className = 'carousel-item';
+          if (this.eventPlan?.hikeMainImage) {
+            let carouselMainImage = document.getElementById('main-image-carousel');
+            // @ts-ignore
+            carouselMainImage.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+      if (this.eventPlan?.hikeHighlightImage2) {
+        let carouselSubImage2 = document.getElementById('sub-image-2-carousel');
+        // @ts-ignore
+        if (carouselSubImage2.className.includes('active')) {
+          // @ts-ignore
+          carouselSubImage2.className = 'carousel-item';
+          if (this.eventPlan?.hikeHighlightImage1) {
+            let carouselSubImage1 = document.getElementById('sub-image-1-carousel');
+            // @ts-ignore
+            carouselSubImage1.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+    }
+  }
 }
