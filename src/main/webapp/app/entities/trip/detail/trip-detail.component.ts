@@ -109,4 +109,180 @@ export class TripDetailComponent implements OnInit {
       content.className = 'tab-pane fade';
     }
   }
+  carouselNext() {
+    switchCarousel: {
+      if (this.trip?.mainImage) {
+        let carouselMainImage = document.getElementById('main-image-carousel');
+        // @ts-ignore
+        if (carouselMainImage.className.includes('active')) {
+          // @ts-ignore
+          carouselMainImage.className = 'carousel-item';
+          if (this.trip.subImage1) {
+            let carouselSubImage1 = document.getElementById('sub-image-1-carousel');
+            // @ts-ignore
+            carouselSubImage1.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+      if (this.trip?.subImage1) {
+        let carouselSubImage1 = document.getElementById('sub-image-1-carousel');
+        // @ts-ignore
+        if (carouselSubImage1.className.includes('active')) {
+          // @ts-ignore
+          carouselSubImage1.className = 'carousel-item';
+          if (this.trip.subImage2) {
+            let carouselSubImage2 = document.getElementById('sub-image-2-carousel');
+            // @ts-ignore
+            carouselSubImage2.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+      if (this.trip?.subImage2) {
+        let carouselSubImage2 = document.getElementById('sub-image-2-carousel');
+        // @ts-ignore
+        if (carouselSubImage2.className.includes('active')) {
+          // @ts-ignore
+          carouselSubImage2.className = 'carousel-item';
+          if (this.trip.subImage3) {
+            let carouselSubImage3 = document.getElementById('sub-image-3-carousel');
+            // @ts-ignore
+            carouselSubImage3.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+      if (this.trip?.subImage3) {
+        let carouselSubImage3 = document.getElementById('sub-image-3-carousel');
+        // @ts-ignore
+        if (carouselSubImage3.className.includes('active')) {
+          // @ts-ignore
+          carouselSubImage3.className = 'carousel-item';
+          if (this.trip.subImage4) {
+            let carouselSubImage4 = document.getElementById('sub-image-4-carousel');
+            // @ts-ignore
+            carouselSubImage4.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+      if (this.trip?.subImage4) {
+        let carouselSubImage4 = document.getElementById('sub-image-4-carousel');
+        // @ts-ignore
+        if (carouselSubImage4.className.includes('active')) {
+          // @ts-ignore
+          carouselSubImage4.className = 'carousel-item';
+          if (this.trip.subImage5) {
+            let carouselSubImage5 = document.getElementById('sub-image-5-carousel');
+            // @ts-ignore
+            carouselSubImage5.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+      if (this.trip?.subImage5) {
+        let carouselSubImage5 = document.getElementById('sub-image-5-carousel');
+        // @ts-ignore
+        if (carouselSubImage5.className.includes('active')) {
+          // @ts-ignore
+          carouselSubImage5.className = 'carousel-item';
+          if (this.trip.subImage6) {
+            let carouselSubImage6 = document.getElementById('sub-image-6-carousel');
+            // @ts-ignore
+            carouselSubImage6.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+    }
+  }
+  carouselPrevious() {
+    switchCarousel: {
+      if (this.trip?.subImage1) {
+        let carouselSubImage1 = document.getElementById('sub-image-1-carousel');
+        // @ts-ignore
+        if (carouselSubImage1.className.includes('active')) {
+          // @ts-ignore
+          carouselSubImage1.className = 'carousel-item';
+          if (this.trip.mainImage) {
+            let carouselMainImage = document.getElementById('main-image-carousel');
+            // @ts-ignore
+            carouselMainImage.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+      if (this.trip?.subImage2) {
+        let carouselSubImage2 = document.getElementById('sub-image-2-carousel');
+        // @ts-ignore
+        if (carouselSubImage2.className.includes('active')) {
+          // @ts-ignore
+          carouselSubImage2.className = 'carousel-item';
+          if (this.trip.subImage1) {
+            let carouselSubImage1 = document.getElementById('sub-image-1-carousel');
+            // @ts-ignore
+            carouselSubImage1.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+      if (this.trip?.subImage3) {
+        let carouselSubImage3 = document.getElementById('sub-image-3-carousel');
+        // @ts-ignore
+        if (carouselSubImage3.className.includes('active')) {
+          // @ts-ignore
+          carouselSubImage3.className = 'carousel-item';
+          if (this.trip.subImage2) {
+            let carouselSubImage2 = document.getElementById('sub-image-2-carousel');
+            // @ts-ignore
+            carouselSubImage2.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+      if (this.trip?.subImage4) {
+        let carouselSubImage4 = document.getElementById('sub-image-4-carousel');
+        // @ts-ignore
+        if (carouselSubImage4.className.includes('active')) {
+          // @ts-ignore
+          carouselSubImage4.className = 'carousel-item';
+          if (this.trip.subImage3) {
+            let carouselSubImage3 = document.getElementById('sub-image-3-carousel');
+            // @ts-ignore
+            carouselSubImage3.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+      if (this.trip?.subImage5) {
+        let carouselSubImage5 = document.getElementById('sub-image-5-carousel');
+        // @ts-ignore
+        if (carouselSubImage5.className.includes('active')) {
+          // @ts-ignore
+          carouselSubImage5.className = 'carousel-item';
+          if (this.trip.subImage4) {
+            let carouselSubImage4 = document.getElementById('sub-image-4-carousel');
+            // @ts-ignore
+            carouselSubImage4.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+      if (this.trip?.subImage6) {
+        let carouselSubImage6 = document.getElementById('sub-image-6-carousel');
+        // @ts-ignore
+        if (carouselSubImage6.className.includes('active')) {
+          // @ts-ignore
+          carouselSubImage6.className = 'carousel-item';
+          if (this.trip.subImage5) {
+            let carouselSubImage5 = document.getElementById('sub-image-5-carousel');
+            // @ts-ignore
+            carouselSubImage5.className = 'carousel-item active';
+            break switchCarousel;
+          }
+        }
+      }
+    }
+  }
 }

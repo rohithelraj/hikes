@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center">
-  <div class="col-8">
+  <div class="col-12">
     <div *ngIf="trip">
       <jhi-alert-error></jhi-alert-error>
 
@@ -11,186 +11,78 @@
       <br />
       <ol class="list-group list-group-item-primary">
         <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <br />
-            <img [src]="'data:' + trip.mainImage + ';base64,' + trip.mainImage" class="d-block w-100" alt="..." />
-            <br />
+          <div id="carouselTravelReportSlideIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselTravelReportSlideIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselTravelReportSlideIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselTravelReportSlideIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active" id="main-image-carousel" *ngIf="trip.mainImage">
+                <img [src]="'data:' + trip.mainImageContentType + ';base64,' + trip.mainImage" alt="..." class="img-fluid" />
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="text-white">{{ trip.tripName }}</h5>
+                </div>
+              </div>
+              <div class="carousel-item" id="sub-image-1-carousel" *ngIf="trip.subImage1">
+                <img [src]="'data:' + trip.subImage1ContentType + ';base64,' + trip.subImage1" alt="..." class="img-fluid" />
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="text-white">Highlights</h5>
+                </div>
+              </div>
+              <div class="carousel-item" id="sub-image-2-carousel" *ngIf="trip.subImage2">
+                <img [src]="'data:' + trip.subImage2ContentType + ';base64,' + trip.subImage2" alt="..." class="img-fluid" />
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="text-white">Highlights</h5>
+                </div>
+              </div>
+              <div class="carousel-item" id="sub-image-3-carousel" *ngIf="trip.subImage3">
+                <img [src]="'data:' + trip.subImage3ContentType + ';base64,' + trip.subImage3" alt="..." class="img-fluid" />
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="text-white">Highlights</h5>
+                </div>
+              </div>
+              <div class="carousel-item" id="sub-image-4-carousel" *ngIf="trip.subImage4">
+                <img [src]="'data:' + trip.subImage4ContentType + ';base64,' + trip.subImage4" alt="..." class="img-fluid" />
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="text-white">Highlights</h5>
+                </div>
+              </div>
+              <div class="carousel-item" id="sub-image-5-carousel" *ngIf="trip.subImage5">
+                <img [src]="'data:' + trip.subImage5ContentType + ';base64,' + trip.subImage5" alt="..." class="img-fluid" />
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="text-white">Highlights</h5>
+                </div>
+              </div>
+              <div class="carousel-item" id="sub-image-6-carousel" *ngIf="trip.subImage6">
+                <img [src]="'data:' + trip.subImage6ContentType + ';base64,' + trip.subImage6" alt="..." class="img-fluid" />
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="text-white">Highlights</h5>
+                </div>
+              </div>
+            </div>
+            <a class="carousel-control-prev" (click)="carouselPrevious()" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" (click)="carouselNext()" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold"><span class="largerFont text-info">Start Date</span></div>
-            {{ trip.startDate | formatMediumDate }}
+            <br />
+            <p class="text-success">{{ trip.startDate | formatMediumDate }}<br /></p>
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold"><span class="largerFont text-info">End Date</span></div>
-            {{ trip.endDate | formatMediumDate }}
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="fw-bold" style="margin-left: 0.5em"><span class="largerFont text-info">Hikes/Events</span></div>
-          <br />
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" *ngFor="let event of events">
-              <a
-                class="nav-link text-warning"
-                id="home-tab-{{ event.id }}"
-                data-toggle="tab"
-                (click)="chooseEventTab(event.id, event.komootMap + '')"
-                role="tab"
-                aria-controls="home"
-                aria-selected="true"
-                >{{ event.eventNAme }}</a
-              >
-            </li>
-          </ul>
-          <div class="tab-content" id="myTabContent" *ngFor="let event of events">
-            <div class="tab-pane fade" id="home-{{ event.id }}" role="tabpanel" aria-labelledby="home-tab">
-              <div class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  {{ event.eventDate | formatMediumDate }}
-                </div>
-              </div>
-              <div class="list-group-item d-flex justify-content-between align-items-start">
-                <iframe [src]="komootUrl" style="width: 100em" height="700" title="Komoot map"></iframe>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="fw-bold" style="margin-left: 0.5em"><span class="largerFont text-info">Interesting Places</span></div>
-          <br />
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" *ngIf="trip.subImage1">
-              <a
-                class="nav-link active"
-                id="home-tab-sub-image-1"
-                (click)="chooseHighlightTab('1')"
-                data-toggle="tab"
-                role="tab"
-                aria-controls="home"
-                aria-selected="true"
-                >Highlights</a
-              >
-            </li>
-            <li class="nav-item" *ngIf="trip.subImage2">
-              <a
-                class="nav-link"
-                id="home-tab-sub-image-2"
-                (click)="chooseHighlightTab('2')"
-                data-toggle="tab"
-                role="tab"
-                aria-controls="home"
-                aria-selected="true"
-                >Highlights</a
-              >
-            </li>
-            <li class="nav-item" *ngIf="trip.subImage3">
-              <a
-                class="nav-link"
-                id="home-tab-sub-image-3"
-                (click)="chooseHighlightTab('3')"
-                data-toggle="tab"
-                role="tab"
-                aria-controls="home"
-                aria-selected="true"
-                >Highlights</a
-              >
-            </li>
-            <li class="nav-item" *ngIf="trip.subImage4">
-              <a
-                class="nav-link"
-                id="home-tab-sub-image-4"
-                (click)="chooseHighlightTab('4')"
-                data-toggle="tab"
-                role="tab"
-                aria-controls="home"
-                aria-selected="true"
-                >Highlights</a
-              >
-            </li>
-            <li class="nav-item" *ngIf="trip.subImage5">
-              <a
-                class="nav-link"
-                id="home-tab-sub-image-5"
-                (click)="chooseHighlightTab('5')"
-                data-toggle="tab"
-                role="tab"
-                aria-controls="home"
-                aria-selected="true"
-                >Highlights</a
-              >
-            </li>
-            <li class="nav-item" *ngIf="trip.subImage6">
-              <a
-                class="nav-link"
-                id="home-tab-sub-image-6"
-                (click)="chooseHighlightTab('6')"
-                data-toggle="tab"
-                role="tab"
-                aria-controls="home"
-                aria-selected="true"
-                >Highlights</a
-              >
-            </li>
-          </ul>
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home-sub-image-content-1" role="tabpanel" aria-labelledby="home-tab">
-              <div *ngIf="trip.subImage1">
-                <a (click)="openFile(trip.subImage1, trip.subImage1ContentType)">
-                  <img [src]="'data:' + trip.subImage1ContentType + ';base64,' + trip.subImage1" style="max-width: 10em" alt="trip image" />
-                </a>
-                <span>{{ trip.subImage1Description }}</span>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="home-sub-image-content-2" role="tabpanel" aria-labelledby="home-tab">
-              <div *ngIf="trip.subImage2">
-                <a (click)="openFile(trip.subImage2, trip.subImage2ContentType)">
-                  <img [src]="'data:' + trip.subImage2ContentType + ';base64,' + trip.subImage2" style="max-width: 10em" alt="trip image" />
-                </a>
-                <span>{{ trip.subImage2Description }}</span>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="home-sub-image-content-3" role="tabpanel" aria-labelledby="home-tab">
-              <div *ngIf="trip.subImage3">
-                <a (click)="openFile(trip.subImage3, trip.subImage3ContentType)">
-                  <img [src]="'data:' + trip.subImage3ContentType + ';base64,' + trip.subImage3" style="max-width: 10em" alt="trip image" />
-                </a>
-                <span>{{ trip.subImage3Description }}</span>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="home-sub-image-content-4" role="tabpanel" aria-labelledby="home-tab">
-              <div *ngIf="trip.subImage4">
-                <a (click)="openFile(trip.subImage4, trip.subImage4ContentType)">
-                  <img [src]="'data:' + trip.subImage4ContentType + ';base64,' + trip.subImage4" style="max-width: 10em" alt="trip image" />
-                </a>
-                <span>{{ trip.subImage4Description }}</span>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="home-sub-image-content-5" role="tabpanel" aria-labelledby="home-tab">
-              <div *ngIf="trip.subImage5">
-                <a (click)="openFile(trip.subImage5, trip.subImage5ContentType)">
-                  <img [src]="'data:' + trip.subImage5ContentType + ';base64,' + trip.subImage5" style="max-width: 10em" alt="trip image" />
-                </a>
-                <span>{{ trip.subImage5Description }}</span>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="home-sub-image-content-6" role="tabpanel" aria-labelledby="home-tab">
-              <div *ngIf="trip.subImage6">
-                <a (click)="openFile(trip.subImage6, trip.subImage6ContentType)">
-                  <img [src]="'data:' + trip.subImage6ContentType + ';base64,' + trip.subImage6" style="max-width: 10em" alt="trip image" />
-                </a>
-                <span>{{ trip.subImage6Description }}</span>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold"><span style="margin-left: 0.5em" class="largerFont text-info">Geolocations</span></div>
-            <iframe [src]="googleMapsUrl" width="640 em" height="480 em"></iframe>
+            <br />
+            <p class="text-success">{{ trip.endDate | formatMediumDate }}<br /></p>
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -216,6 +108,221 @@
             <div [innerHTML]="trip.costDetails"></div>
           </div>
         </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto" style="width: 100%">
+            <div class="fw-bold"><span style="margin-left: 0.5em" class="largerFont text-info">Geolocations</span></div>
+            <br />
+            <iframe [src]="googleMapsUrl" height="480 em" style="width: 100%"></iframe>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="fw-bold" style="margin-left: 0.5em"><span class="largerFont text-info">Hikes/Events</span></div>
+          <br />
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" *ngFor="let event of events">
+              <a
+                class="nav-link text-warning"
+                id="home-tab-{{ event.id }}"
+                data-toggle="tab"
+                (click)="chooseEventTab(event.id, event.komootMap + '')"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >{{ event.eventNAme }}</a
+              >
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent" *ngFor="let event of events">
+            <div class="tab-pane fade" id="home-{{ event.id }}" role="tabpanel" aria-labelledby="home-tab">
+              <div class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto text-warning">
+                  <span style="font-size: 0.8em">{{ event.eventDate | formatMediumDate }} <br /><br /> </span>
+                  <button class="btn btn-success" style="font-size: 0.8em" [routerLink]="['/event-plan', event.id, 'view']">
+                    Hike Details
+                  </button>
+                </div>
+              </div>
+              <div class="list-group-item d-flex justify-content-between align-items-start">
+                <iframe [src]="komootUrl" style="width: 100%" height="700" title="Komoot map"></iframe>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="fw-bold" style="margin-left: 0.5em"><span class="largerFont text-info">Interesting Places</span></div>
+          <br />
+          <ul class="nav nav-tabs" id="myTab1" role="tablist">
+            <li class="nav-item" *ngIf="trip.subImage1">
+              <a
+                class="nav-link active"
+                id="home-tab-sub-image-1"
+                (click)="chooseHighlightTab('1')"
+                data-toggle="tab"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >Highlight 1</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="trip.subImage2">
+              <a
+                class="nav-link"
+                id="home-tab-sub-image-2"
+                (click)="chooseHighlightTab('2')"
+                data-toggle="tab"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >Highlight 2</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="trip.subImage3">
+              <a
+                class="nav-link"
+                id="home-tab-sub-image-3"
+                (click)="chooseHighlightTab('3')"
+                data-toggle="tab"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >Highlight 3</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="trip.subImage4">
+              <a
+                class="nav-link"
+                id="home-tab-sub-image-4"
+                (click)="chooseHighlightTab('4')"
+                data-toggle="tab"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >Highlight 4</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="trip.subImage5">
+              <a
+                class="nav-link"
+                id="home-tab-sub-image-5"
+                (click)="chooseHighlightTab('5')"
+                data-toggle="tab"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >Highlight 5</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="trip.subImage6">
+              <a
+                class="nav-link"
+                id="home-tab-sub-image-6"
+                (click)="chooseHighlightTab('6')"
+                data-toggle="tab"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >Highlight 6</a
+              >
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent1">
+            <div class="tab-pane fade show active" id="home-sub-image-content-1" role="tabpanel" aria-labelledby="home-tab">
+              <br />
+              <div *ngIf="trip.subImage1" class="row">
+                <a (click)="openFile(trip.subImage1, trip.subImage1ContentType)">
+                  <img
+                    [src]="'data:' + trip.subImage1ContentType + ';base64,' + trip.subImage1"
+                    style="max-width: 10em"
+                    alt="trip image"
+                    style="max-width: 10em"
+                    class="img-thumbnail"
+                  />
+                </a>
+                <span><br />{{ trip.subImage1Description }}<br /></span>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="home-sub-image-content-2" role="tabpanel" aria-labelledby="home-tab">
+              <br />
+              <div *ngIf="trip.subImage2" class="row">
+                <a (click)="openFile(trip.subImage2, trip.subImage2ContentType)">
+                  <img
+                    [src]="'data:' + trip.subImage2ContentType + ';base64,' + trip.subImage2"
+                    style="max-width: 10em"
+                    alt="trip image"
+                    style="max-width: 10em"
+                    class="img-thumbnail"
+                  />
+                </a>
+                <br />
+                <span><br />{{ trip.subImage2Description }}<br /></span>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="home-sub-image-content-3" role="tabpanel" aria-labelledby="home-tab">
+              <br />
+              <div *ngIf="trip.subImage3" class="row">
+                <a (click)="openFile(trip.subImage3, trip.subImage3ContentType)">
+                  <img
+                    [src]="'data:' + trip.subImage3ContentType + ';base64,' + trip.subImage3"
+                    style="max-width: 10em"
+                    alt="trip image"
+                    style="max-width: 10em"
+                    class="img-thumbnail"
+                  />
+                </a>
+                <br />
+                <span><br />{{ trip.subImage3Description }}<br /></span>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="home-sub-image-content-4" role="tabpanel" aria-labelledby="home-tab">
+              <br />
+              <div *ngIf="trip.subImage4" class="row">
+                <a (click)="openFile(trip.subImage4, trip.subImage4ContentType)">
+                  <img
+                    [src]="'data:' + trip.subImage4ContentType + ';base64,' + trip.subImage4"
+                    style="max-width: 10em"
+                    alt="trip image"
+                    style="max-width: 10em"
+                    class="img-thumbnail"
+                  />
+                </a>
+                <br />
+                <span><br />{{ trip.subImage4Description }}<br /></span>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="home-sub-image-content-5" role="tabpanel" aria-labelledby="home-tab">
+              <br />
+              <div *ngIf="trip.subImage5" class="row">
+                <a (click)="openFile(trip.subImage5, trip.subImage5ContentType)">
+                  <img
+                    [src]="'data:' + trip.subImage5ContentType + ';base64,' + trip.subImage5"
+                    style="max-width: 10em"
+                    alt="trip image"
+                    style="max-width: 10em"
+                    class="img-thumbnail"
+                  />
+                </a>
+                <br />
+                <span><br />{{ trip.subImage5Description }}<br /></span>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="home-sub-image-content-6" role="tabpanel" aria-labelledby="home-tab">
+              <br />
+              <div *ngIf="trip.subImage6" class="row">
+                <a (click)="openFile(trip.subImage6, trip.subImage6ContentType)">
+                  <img
+                    [src]="'data:' + trip.subImage6ContentType + ';base64,' + trip.subImage6"
+                    style="max-width: 10em"
+                    alt="trip image"
+                    style="max-width: 10em"
+                    class="img-thumbnail"
+                  />
+                </a>
+                <br />
+                <span><br />{{ trip.subImage6Description }}<br /></span>
+              </div>
+            </div>
+          </div>
+        </li>
       </ol>
       <br />
 
@@ -223,7 +330,7 @@
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
       </button>
 
-      <button type="button" [routerLink]="['/trip', trip.id, 'edit']" class="btn btn-primary">
+      <button type="button" *jhiHasAnyAuthority="'ROLE_USER'" [routerLink]="['/trip', trip.id, 'edit']" class="btn btn-primary">
         <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
       </button>
     </div>

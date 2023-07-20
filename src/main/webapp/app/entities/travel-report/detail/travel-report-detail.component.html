@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center">
-  <div class="col-8">
+  <div class="col-12">
     <div *ngIf="travelReport">
       <h2 data-cy="travelReportDetailsHeading">
         <span>{{ travelReport.reportName }}</span>
@@ -199,7 +199,7 @@
                   class="img-fluid"
                 />
                 <div class="carousel-caption d-none d-md-block">
-                  <h5 class="text-info">{{ travelReport.reportName }}</h5>
+                  <h5 class="text-white">{{ travelReport.reportName }}</h5>
                 </div>
               </div>
               <div class="carousel-item" id="sub-image-1-carousel" *ngIf="travelReport.reportSubImage1">
@@ -209,7 +209,7 @@
                   class="img-fluid"
                 />
                 <div class="carousel-caption d-none d-md-block">
-                  <h5 class="text-info">{{ travelReport.reportSubImageName }}</h5>
+                  <h5 class="text-white">{{ travelReport.reportSubImageName }}</h5>
                 </div>
               </div>
               <div class="carousel-item" id="sub-image-2-carousel" *ngIf="travelReport.reportSubImage2">
@@ -219,7 +219,7 @@
                   class="img-fluid"
                 />
                 <div class="carousel-caption d-none d-md-block">
-                  <h5 class="text-info">{{ travelReport.reportSubImage2Name }}</h5>
+                  <h5 class="text-white">{{ travelReport.reportSubImage2Name }}</h5>
                 </div>
               </div>
               <div class="carousel-item" id="sub-image-3-carousel" *ngIf="travelReport.reportSubImage3">
@@ -229,7 +229,7 @@
                   class="img-fluid"
                 />
                 <div class="carousel-caption d-none d-md-block">
-                  <h5 class="text-info">{{ travelReport.reportSubImage3Name }}</h5>
+                  <h5 class="text-white">{{ travelReport.reportSubImage3Name }}</h5>
                 </div>
               </div>
               <div class="carousel-item" id="sub-image-4-carousel" *ngIf="travelReport.reportSubImage4">
@@ -239,7 +239,7 @@
                   class="img-fluid"
                 />
                 <div class="carousel-caption d-none d-md-block">
-                  <h5 class="text-info">{{ travelReport.reportSubImage4Name }}</h5>
+                  <h5 class="text-white">{{ travelReport.reportSubImage4Name }}</h5>
                 </div>
               </div>
               <div class="carousel-item" id="sub-image-5-carousel" *ngIf="travelReport.reportSubImage5">
@@ -249,7 +249,7 @@
                   class="img-fluid"
                 />
                 <div class="carousel-caption d-none d-md-block">
-                  <h5 class="text-info">{{ travelReport.reportSubImage5Name }}</h5>
+                  <h5 class="text-white">{{ travelReport.reportSubImage5Name }}</h5>
                 </div>
               </div>
               <div class="carousel-item" id="sub-image-6-carousel" *ngIf="travelReport.reportSubImage6">
@@ -259,7 +259,7 @@
                   class="img-fluid"
                 />
                 <div class="carousel-caption d-none d-md-block">
-                  <h5 class="text-info">{{ travelReport.reportSubImage6Name }}</h5>
+                  <h5 class="text-white">{{ travelReport.reportSubImage6Name }}</h5>
                 </div>
               </div>
             </div>
@@ -285,7 +285,8 @@
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold" style="margin-left: 0.5em"><span class="largerFont text-info">Report Date</span></div>
-            {{ travelReport.reportDate | formatMediumDate }}
+            <br />
+            <p class="text-success">{{ travelReport.reportDate | formatMediumDate }}<br /></p>
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -372,6 +373,7 @@
           </ul>
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home-sub-image-content-1" role="tabpanel" aria-labelledby="home-tab">
+              <br />
               <div *ngIf="travelReport.reportSubImage1" class="row">
                 <a (click)="openFile(travelReport.reportSubImage1, travelReport.reportSubImage1ContentType)">
                   <img
@@ -381,10 +383,11 @@
                     class="img-thumbnail"
                   />
                 </a>
-                <span>{{ travelReport.reportSubImage1Description }}</span>
+                <span><br />{{ travelReport.reportSubImage1Description }}</span>
               </div>
             </div>
             <div class="tab-pane fade" id="home-sub-image-content-2" role="tabpanel" aria-labelledby="home-tab">
+              <br />
               <div *ngIf="travelReport.reportSubImage2" class="row">
                 <a (click)="openFile(travelReport.reportSubImage2, travelReport.reportSubImage2ContentType)">
                   <img
@@ -394,10 +397,11 @@
                     class="img-thumbnail"
                   />
                 </a>
-                <span>{{ travelReport.reportSubImage2Description }}</span>
+                <span><br />{{ travelReport.reportSubImage2Description }}</span>
               </div>
             </div>
             <div class="tab-pane fade" id="home-sub-image-content-3" role="tabpanel" aria-labelledby="home-tab">
+              <br />
               <div *ngIf="travelReport.reportSubImage3" class="row">
                 <a (click)="openFile(travelReport.reportSubImage3, travelReport.reportSubImage3ContentType)">
                   <img
@@ -407,10 +411,11 @@
                     class="img-thumbnail"
                   />
                 </a>
-                <span>{{ travelReport.reportSubImage3Description }}</span>
+                <span><br />{{ travelReport.reportSubImage3Description }}</span>
               </div>
             </div>
             <div class="tab-pane fade" id="home-sub-image-content-4" role="tabpanel" aria-labelledby="home-tab">
+              <br />
               <div *ngIf="travelReport.reportSubImage4" class="row">
                 <a (click)="openFile(travelReport.reportSubImage4, travelReport.reportSubImage4ContentType)">
                   <img
@@ -420,10 +425,11 @@
                     class="img-thumbnail"
                   />
                 </a>
-                <span>{{ travelReport.reportSubImage4Description }}</span>
+                <span><br />{{ travelReport.reportSubImage4Description }}</span>
               </div>
             </div>
             <div class="tab-pane fade" id="home-sub-image-content-5" role="tabpanel" aria-labelledby="home-tab">
+              <br />
               <div *ngIf="travelReport.reportSubImage5" class="row">
                 <a (click)="openFile(travelReport.reportSubImage5, travelReport.reportSubImage5ContentType)">
                   <img
@@ -433,10 +439,11 @@
                     class="img-thumbnail"
                   />
                 </a>
-                <span>{{ travelReport.reportSubImage5Description }}</span>
+                <span><br />{{ travelReport.reportSubImage5Description }}</span>
               </div>
             </div>
             <div class="tab-pane fade" id="home-sub-image-content-6" role="tabpanel" aria-labelledby="home-tab">
+              <br />
               <div *ngIf="travelReport.reportSubImage6" class="row">
                 <a (click)="openFile(travelReport.reportSubImage6, travelReport.reportSubImage6ContentType)">
                   <img
@@ -446,7 +453,7 @@
                     class="img-thumbnail"
                   />
                 </a>
-                <span>{{ travelReport.reportSubImage6Description }}</span>
+                <span><br />{{ travelReport.reportSubImage6Description }}</span>
               </div>
             </div>
           </div>
@@ -457,7 +464,12 @@
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
       </button>
 
-      <button type="button" [routerLink]="['/travel-report', travelReport.id, 'edit']" class="btn btn-primary">
+      <button
+        type="button"
+        *jhiHasAnyAuthority="'ROLE_USER'"
+        [routerLink]="['/travel-report', travelReport.id, 'edit']"
+        class="btn btn-primary"
+      >
         <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
       </button>
     </div>
