@@ -10,17 +10,72 @@ import { EventPlanService } from '../service/event-plan.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 import { EventManager, EventWithContent } from 'app/core/util/event-manager.service';
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'jhi-event-plan-update',
   templateUrl: './event-plan-update.component.html',
+  styleUrls: ['./event-plan-update.component.scss'],
 })
 export class EventPlanUpdateComponent implements OnInit {
   isSaving = false;
   eventPlan: IEventPlan | null = null;
 
   editForm: EventPlanFormGroup = this.eventPlanFormService.createEventPlanFormGroup();
-
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '0',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Enter text here...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [
+      { class: 'arial', name: 'Arial' },
+      { class: 'times-new-roman', name: 'Times New Roman' },
+      { class: 'calibri', name: 'Calibri' },
+      { class: 'comic-sans-ms', name: 'Comic Sans MS' },
+    ],
+    customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText',
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      [
+        'strikeThrough',
+        'subscript',
+        'superscript',
+        'justifyLeft',
+        'justifyCenter',
+        'justifyRight',
+        'justifyFull',
+        'indent',
+        'outdent',
+        'insertUnorderedList',
+        'insertOrderedList',
+      ],
+      ['insertImage', 'insertVideo'],
+    ],
+  };
   constructor(
     protected dataUtils: DataUtils,
     protected eventManager: EventManager,
@@ -100,5 +155,62 @@ export class EventPlanUpdateComponent implements OnInit {
   protected updateForm(eventPlan: IEventPlan): void {
     this.eventPlan = eventPlan;
     this.eventPlanFormService.resetForm(this.editForm, eventPlan);
+  }
+
+  navigateTo(elementId: string, breadcrumbId: string) {
+    this.hideAllForms();
+    let element = document.getElementById(elementId);
+    // @ts-ignore
+    element.className = 'list-group-item d-flex justify-content-between align-items-start';
+    let breadcrumb = document.getElementById(breadcrumbId);
+    // @ts-ignore
+    breadcrumb.className = 'breadcrumb-item active';
+    // @ts-ignore
+    breadcrumb.ariaCurrent = 'page';
+  }
+
+  private hideAllForms() {
+    let descriptionElement = document.getElementById('description-details');
+    // @ts-ignore
+    descriptionElement.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    let highlight1Element = document.getElementById('highlight-1-details');
+    // @ts-ignore
+    highlight1Element.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    let highlight2Element = document.getElementById('highlight-2-details');
+    // @ts-ignore
+    highlight2Element.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    let tripDetailsElement = document.getElementById('travel-schedule-details');
+    // @ts-ignore
+    tripDetailsElement.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    let basicElement = document.getElementById('basic-details');
+    // @ts-ignore
+    basicElement.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+
+    let descriptionBreadcrumb = document.getElementById('description');
+    // @ts-ignore
+    descriptionBreadcrumb.className = 'breadcrumb-item';
+    // @ts-ignore
+    descriptionBreadcrumb.ariaCurrent = '';
+    let highlight1Breadcrumb = document.getElementById('highlight-1');
+    // @ts-ignore
+    highlight1Breadcrumb.className = 'breadcrumb-item';
+    // @ts-ignore
+    highlight1Breadcrumb.ariaCurrent = '';
+    let highlight2Breadcrumb = document.getElementById('highlight-2');
+    // @ts-ignore
+    highlight2Breadcrumb.className = 'breadcrumb-item';
+    // @ts-ignore
+    highlight2Breadcrumb.ariaCurrent = '';
+
+    let tripDetailsBreadcrumb = document.getElementById('travel-schedule');
+    // @ts-ignore
+    tripDetailsBreadcrumb.className = 'breadcrumb-item';
+    // @ts-ignore
+    tripDetailsBreadcrumb.ariaCurrent = '';
+    let basicBreadcrumb = document.getElementById('basic');
+    // @ts-ignore
+    basicBreadcrumb.className = 'breadcrumb-item';
+    // @ts-ignore
+    basicBreadcrumb.ariaCurrent = '';
   }
 }

@@ -5,9 +5,10 @@ import { EventPlanDetailComponent } from './detail/event-plan-detail.component';
 import { EventPlanUpdateComponent } from './update/event-plan-update.component';
 import { EventPlanDeleteDialogComponent } from './delete/event-plan-delete-dialog.component';
 import { EventPlanRoutingModule } from './route/event-plan-routing.module';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
-  imports: [SharedModule, EventPlanRoutingModule],
+  imports: [SharedModule, EventPlanRoutingModule, AngularEditorModule],
   declarations: [EventPlanComponent, EventPlanDetailComponent, EventPlanUpdateComponent, EventPlanDeleteDialogComponent],
 })
 export class EventPlanModule {}
