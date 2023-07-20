@@ -111,7 +111,7 @@
               </div>
             </div>
           </li>
-          <li id="description-details" class="list-group-item d-flex justify-content-between align-items-start">
+          <li id="description-details" class="list-group-item d-flex justify-content-between align-items-start hidden">
             <div class="ms-2 me-auto">
               <br />
               <div class="form-group">
@@ -185,7 +185,7 @@
               </div>
             </div>
           </li>
-          <li id="related-hikes-details" class="list-group-item d-flex justify-content-between align-items-start">
+          <li id="related-hikes-details" class="list-group-item d-flex justify-content-between align-items-start hidden">
             <div class="ms-2 me-auto">
               <br />
               <div class="form-group">
@@ -233,7 +233,7 @@
               </div>
             </div>
           </li>
-          <li id="accomodation-details" class="list-group-item d-flex justify-content-between align-items-start">
+          <li id="accomodation-details" class="list-group-item d-flex justify-content-between align-items-start hidden">
             <div class="ms-2 me-auto">
               <br />
               <div class="form-group">
@@ -260,43 +260,64 @@
               </div>
             </div>
           </li>
-          <li id="costs-details" class="list-group-item d-flex justify-content-between align-items-start">
+          <li id="costs-details" class="list-group-item d-flex justify-content-between align-items-start hidden">
             <div class="ms-2 me-auto">
               <br />
               <div class="row mb-3">
                 <label class="form-label" jhiTranslate="hikesApp.trip.costDetails" for="field_costDetails">Cost Details</label>
-                <textarea
-                  class="form-control"
-                  name="costDetails"
-                  id="field_costDetails"
-                  data-cy="costDetails"
-                  formControlName="costDetails"
-                ></textarea>
+                <angular-editor autofocus="true" id="field_costDetails" formControlName="costDetails" [config]="config"></angular-editor>
+              </div>
+              <div style="margin-top: 1em">
+                <button type="button" class="btn btn-primary" (click)="navigateTo('accomodation-details', 'accomodation')">Previous</button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  style="margin-left: 1em"
+                  (click)="navigateTo('transportation-details', 'transportation')"
+                >
+                  Next
+                </button>
+                <button type="button" class="btn btn-danger" style="margin-left: 1em" data-dismiss="modal" (click)="previousState()">
+                  Cancel
+                </button>
               </div>
             </div>
           </li>
-          <li id="transportation-details" class="list-group-item d-flex justify-content-between align-items-start">
+          <li id="transportation-details" class="list-group-item d-flex justify-content-between align-items-start hidden">
             <div class="ms-2 me-auto">
               <br />
               <div class="row mb-3">
                 <label class="form-label" jhiTranslate="hikesApp.trip.transportationDetails" for="field_transportationDetails"
                   >Transportation Details</label
                 >
-                <textarea
-                  class="form-control"
-                  name="transportationDetails"
+                <angular-editor
+                  autofocus="true"
                   id="field_transportationDetails"
-                  data-cy="transportationDetails"
                   formControlName="transportationDetails"
-                ></textarea>
+                  [config]="config"
+                ></angular-editor>
+              </div>
+              <div style="margin-top: 1em">
+                <button type="button" class="btn btn-primary" (click)="navigateTo('costs-details', 'costs')">Previous</button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  style="margin-left: 1em"
+                  (click)="navigateTo('highlight-1-details', 'highlight-1')"
+                >
+                  Next
+                </button>
+                <button type="button" class="btn btn-danger" style="margin-left: 1em" data-dismiss="modal" (click)="previousState()">
+                  Cancel
+                </button>
               </div>
             </div>
           </li>
-          <li id="highlight-1-details" class="list-group-item d-flex justify-content-between align-items-start">
+          <li id="highlight-1-details" class="list-group-item d-flex justify-content-between align-items-start hidden">
             <div class="ms-2 me-auto">
               <br />
               <div class="row mb-3">
-                <label class="form-label" jhiTranslate="hikesApp.trip.subImage1" for="field_subImage1">Sub Image 1</label>
+                <label class="form-label" for="field_subImage1">Highlight 1</label>
                 <div>
                   <img
                     [src]="'data:' + editForm.get('subImage1ContentType')!.value + ';base64,' + editForm.get('subImage1')!.value"
@@ -343,24 +364,37 @@
               </div>
 
               <div class="row mb-3">
-                <label class="form-label" jhiTranslate="hikesApp.trip.subImage1Description" for="field_subImage1Description"
-                  >Sub Image 1 Description</label
-                >
-                <textarea
-                  class="form-control"
-                  name="subImage1Description"
+                <label class="form-label" for="field_subImage1Description">Description</label>
+                <angular-editor
+                  autofocus="true"
                   id="field_subImage1Description"
-                  data-cy="subImage1Description"
                   formControlName="subImage1Description"
-                ></textarea>
+                  [config]="config"
+                ></angular-editor>
+              </div>
+              <div style="margin-top: 1em">
+                <button type="button" class="btn btn-primary" (click)="navigateTo('transportation-details', 'transportation')">
+                  Previous
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  style="margin-left: 1em"
+                  (click)="navigateTo('highlight-2-details', 'highlight-2')"
+                >
+                  Next
+                </button>
+                <button type="button" class="btn btn-danger" style="margin-left: 1em" data-dismiss="modal" (click)="previousState()">
+                  Cancel
+                </button>
               </div>
             </div>
           </li>
-          <li id="highlight-2-details" class="list-group-item d-flex justify-content-between align-items-start">
+          <li id="highlight-2-details" class="list-group-item d-flex justify-content-between align-items-start hidden">
             <div class="ms-2 me-auto">
               <br />
               <div class="row mb-3">
-                <label class="form-label" jhiTranslate="hikesApp.trip.subImage2" for="field_subImage2">Sub Image 2</label>
+                <label class="form-label" for="field_subImage2">Highlight 2</label>
                 <div>
                   <img
                     [src]="'data:' + editForm.get('subImage2ContentType')!.value + ';base64,' + editForm.get('subImage2')!.value"
@@ -406,24 +440,35 @@
                 />
               </div>
               <div class="row mb-3">
-                <label class="form-label" jhiTranslate="hikesApp.trip.subImage2Description" for="field_subImage2Description"
-                  >Sub Image 2 Description</label
-                >
-                <textarea
-                  class="form-control"
-                  name="subImage2Description"
+                <label class="form-label" for="field_subImage2Description">Description</label>
+                <angular-editor
+                  autofocus="true"
                   id="field_subImage2Description"
-                  data-cy="subImage2Description"
                   formControlName="subImage2Description"
-                ></textarea>
+                  [config]="config"
+                ></angular-editor>
+              </div>
+              <div style="margin-top: 1em">
+                <button type="button" class="btn btn-primary" (click)="navigateTo('highlight-1-details', 'highlight-1')">Previous</button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  style="margin-left: 1em"
+                  (click)="navigateTo('highlight-3-details', 'highlight-3')"
+                >
+                  Next
+                </button>
+                <button type="button" class="btn btn-danger" style="margin-left: 1em" data-dismiss="modal" (click)="previousState()">
+                  Cancel
+                </button>
               </div>
             </div>
           </li>
-          <li id="highlight-3-details" class="list-group-item d-flex justify-content-between align-items-start">
+          <li id="highlight-3-details" class="list-group-item d-flex justify-content-between align-items-start hidden">
             <div class="ms-2 me-auto">
               <br />
               <div class="row mb-3">
-                <label class="form-label" jhiTranslate="hikesApp.trip.subImage3" for="field_subImage3">Sub Image 3</label>
+                <label class="form-label" for="field_subImage3">Highlight 3</label>
                 <div>
                   <img
                     [src]="'data:' + editForm.get('subImage3ContentType')!.value + ';base64,' + editForm.get('subImage3')!.value"
@@ -469,24 +514,35 @@
                 />
               </div>
               <div class="row mb-3">
-                <label class="form-label" jhiTranslate="hikesApp.trip.subImage3Description" for="field_subImage3Description"
-                  >Sub Image 3 Description</label
-                >
-                <textarea
-                  class="form-control"
-                  name="subImage3Description"
+                <label class="form-label" for="field_subImage3Description">Description</label>
+                <angular-editor
+                  autofocus="true"
                   id="field_subImage3Description"
-                  data-cy="subImage3Description"
                   formControlName="subImage3Description"
-                ></textarea>
+                  [config]="config"
+                ></angular-editor>
+              </div>
+              <div style="margin-top: 1em">
+                <button type="button" class="btn btn-primary" (click)="navigateTo('highlight-2-details', 'highlight-2')">Previous</button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  style="margin-left: 1em"
+                  (click)="navigateTo('highlight-4-details', 'highlight-4')"
+                >
+                  Next
+                </button>
+                <button type="button" class="btn btn-danger" style="margin-left: 1em" data-dismiss="modal" (click)="previousState()">
+                  Cancel
+                </button>
               </div>
             </div>
           </li>
-          <li id="highlight-4-details" class="list-group-item d-flex justify-content-between align-items-start">
+          <li id="highlight-4-details" class="list-group-item d-flex justify-content-between align-items-start hidden">
             <div class="ms-2 me-auto">
               <br />
               <div class="row mb-3">
-                <label class="form-label" jhiTranslate="hikesApp.trip.subImage4" for="field_subImage4">Sub Image 4</label>
+                <label class="form-label" for="field_subImage4">Highlight 4</label>
                 <div>
                   <img
                     [src]="'data:' + editForm.get('subImage4ContentType')!.value + ';base64,' + editForm.get('subImage4')!.value"
@@ -533,24 +589,35 @@
               </div>
 
               <div class="row mb-3">
-                <label class="form-label" jhiTranslate="hikesApp.trip.subImage4Description" for="field_subImage4Description"
-                  >Sub Image 4 Description</label
-                >
-                <textarea
-                  class="form-control"
-                  name="subImage4Description"
+                <label class="form-label" for="field_subImage4Description">Description</label>
+                <angular-editor
+                  autofocus="true"
                   id="field_subImage4Description"
-                  data-cy="subImage4Description"
                   formControlName="subImage4Description"
-                ></textarea>
+                  [config]="config"
+                ></angular-editor>
+              </div>
+              <div style="margin-top: 1em">
+                <button type="button" class="btn btn-primary" (click)="navigateTo('highlight-3-details', 'highlight-3')">Previous</button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  style="margin-left: 1em"
+                  (click)="navigateTo('highlight-5-details', 'highlight-5')"
+                >
+                  Next
+                </button>
+                <button type="button" class="btn btn-danger" style="margin-left: 1em" data-dismiss="modal" (click)="previousState()">
+                  Cancel
+                </button>
               </div>
             </div>
           </li>
-          <li id="highlight-5-details" class="list-group-item d-flex justify-content-between align-items-start">
+          <li id="highlight-5-details" class="list-group-item d-flex justify-content-between align-items-start hidden">
             <div class="ms-2 me-auto">
               <br />
               <div class="row mb-3">
-                <label class="form-label" jhiTranslate="hikesApp.trip.subImage5" for="field_subImage5">Sub Image 5</label>
+                <label class="form-label" for="field_subImage5">Highlight 5</label>
                 <div>
                   <img
                     [src]="'data:' + editForm.get('subImage5ContentType')!.value + ';base64,' + editForm.get('subImage5')!.value"
@@ -596,24 +663,35 @@
                 />
               </div>
               <div class="row mb-3">
-                <label class="form-label" jhiTranslate="hikesApp.trip.subImage5Description" for="field_subImage5Description"
-                  >Sub Image 5 Description</label
-                >
-                <textarea
-                  class="form-control"
-                  name="subImage5Description"
+                <label class="form-label" for="field_subImage5Description">Description</label>
+                <angular-editor
+                  autofocus="true"
                   id="field_subImage5Description"
-                  data-cy="subImage5Description"
                   formControlName="subImage5Description"
-                ></textarea>
+                  [config]="config"
+                ></angular-editor>
+              </div>
+              <div style="margin-top: 1em">
+                <button type="button" class="btn btn-primary" (click)="navigateTo('highlight-4-details', 'highlight-4')">Previous</button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  style="margin-left: 1em"
+                  (click)="navigateTo('highlight-6-details', 'highlight-6')"
+                >
+                  Next
+                </button>
+                <button type="button" class="btn btn-danger" style="margin-left: 1em" data-dismiss="modal" (click)="previousState()">
+                  Cancel
+                </button>
               </div>
             </div>
           </li>
-          <li id="highlight-6-details" class="list-group-item d-flex justify-content-between align-items-start">
+          <li id="highlight-6-details" class="list-group-item d-flex justify-content-between align-items-start hidden">
             <div class="ms-2 me-auto">
               <br />
               <div class="row mb-3">
-                <label class="form-label" jhiTranslate="hikesApp.trip.subImage6" for="field_subImage6">Sub Image 6</label>
+                <label class="form-label" for="field_subImage6">Highlight 6</label>
                 <div>
                   <img
                     [src]="'data:' + editForm.get('subImage6ContentType')!.value + ';base64,' + editForm.get('subImage6')!.value"
@@ -659,23 +737,22 @@
                 />
               </div>
               <div class="row mb-3">
-                <label class="form-label" jhiTranslate="hikesApp.trip.subImage6Description" for="field_subImage6Description"
-                  >Sub Image 6 Description</label
-                >
-                <textarea
-                  class="form-control"
-                  name="subImage6Description"
+                <label class="form-label" for="field_subImage6Description">Description</label>
+                <angular-editor
+                  autofocus="true"
                   id="field_subImage6Description"
-                  data-cy="subImage6Description"
                   formControlName="subImage6Description"
-                ></textarea>
+                  [config]="config"
+                ></angular-editor>
               </div>
               <div>
+                <button type="button" class="btn btn-primary" (click)="navigateTo('highlight-5-details', 'highlight-5')">Previous</button>
                 <button
+                  style="margin-left: 1em"
                   type="button"
                   id="cancel-save"
                   data-cy="entityCreateCancelButton"
-                  class="btn btn-secondary"
+                  class="btn btn-danger"
                   (click)="previousState()"
                 >
                   <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
@@ -683,6 +760,7 @@
 
                 <button
                   type="submit"
+                  style="margin-left: 1em"
                   id="save-entity"
                   data-cy="entityCreateSaveButton"
                   [disabled]="editForm.invalid || isSaving"
