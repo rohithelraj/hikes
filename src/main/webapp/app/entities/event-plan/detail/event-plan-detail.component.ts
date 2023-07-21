@@ -63,8 +63,8 @@ export class EventPlanDetailComponent implements OnInit {
         const carouselMainImage = document.getElementById('main-image-carousel');
 
         if (carouselMainImage?.className.includes('active')) {
-          carouselMainImage.className = 'carousel-item';
           if (this.eventPlan.hikeHighlightImage1) {
+            carouselMainImage.className = 'carousel-item';
             const carouselSubImage1 = document.getElementById('sub-image-1-carousel');
             if (carouselSubImage1) {
               carouselSubImage1.className = 'carousel-item active';
@@ -78,8 +78,8 @@ export class EventPlanDetailComponent implements OnInit {
         const carouselSubImage1 = document.getElementById('sub-image-1-carousel');
 
         if (carouselSubImage1?.className.includes('active')) {
-          carouselSubImage1.className = 'carousel-item';
           if (this.eventPlan.hikeHighlightImage2) {
+            carouselSubImage1.className = 'carousel-item';
             const carouselSubImage2 = document.getElementById('sub-image-2-carousel');
             if (carouselSubImage2) {
               carouselSubImage2.className = 'carousel-item active';
@@ -99,8 +99,8 @@ export class EventPlanDetailComponent implements OnInit {
         const carouselSubImage1 = document.getElementById('sub-image-1-carousel');
 
         if (carouselSubImage1?.className.includes('active')) {
-          carouselSubImage1.className = 'carousel-item';
           if (this.eventPlan.hikeMainImage) {
+            carouselSubImage1.className = 'carousel-item';
             const carouselMainImage = document.getElementById('main-image-carousel');
             if (carouselMainImage) {
               carouselMainImage.className = 'carousel-item active';
@@ -114,8 +114,8 @@ export class EventPlanDetailComponent implements OnInit {
         const carouselSubImage2 = document.getElementById('sub-image-2-carousel');
 
         if (carouselSubImage2?.className.includes('active')) {
-          carouselSubImage2.className = 'carousel-item';
           if (this.eventPlan.hikeHighlightImage1) {
+            carouselSubImage2.className = 'carousel-item';
             const carouselSubImage1 = document.getElementById('sub-image-1-carousel');
             if (carouselSubImage1) {
               carouselSubImage1.className = 'carousel-item active';

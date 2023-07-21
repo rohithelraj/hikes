@@ -51,8 +51,8 @@ export class TravelReportDetailComponent implements OnInit {
         const carouselMainImage = document.getElementById('main-image-carousel');
 
         if (carouselMainImage?.className.includes('active')) {
-          carouselMainImage.className = 'carousel-item';
           if (this.travelReport.reportSubImage1) {
+            carouselMainImage.className = 'carousel-item';
             const carouselSubImage1 = document.getElementById('sub-image-1-carousel');
             if (carouselSubImage1) {
               carouselSubImage1.className = 'carousel-item active';
@@ -64,8 +64,8 @@ export class TravelReportDetailComponent implements OnInit {
           const carouselSubImage1 = document.getElementById('sub-image-1-carousel');
 
           if (carouselSubImage1?.className.includes('active')) {
-            carouselSubImage1.className = 'carousel-item';
             if (this.travelReport.reportSubImage2) {
+              carouselSubImage1.className = 'carousel-item';
               const carouselSubImage2 = document.getElementById('sub-image-2-carousel');
               if (carouselSubImage2) {
                 carouselSubImage2.className = 'carousel-item active';
@@ -79,8 +79,8 @@ export class TravelReportDetailComponent implements OnInit {
           const carouselSubImage2 = document.getElementById('sub-image-2-carousel');
 
           if (carouselSubImage2?.className.includes('active')) {
-            carouselSubImage2.className = 'carousel-item';
             if (this.travelReport.reportSubImage3) {
+              carouselSubImage2.className = 'carousel-item';
               const carouselSubImage3 = document.getElementById('sub-image-3-carousel');
               if (carouselSubImage3) {
                 carouselSubImage3.className = 'carousel-item active';
@@ -94,8 +94,8 @@ export class TravelReportDetailComponent implements OnInit {
           const carouselSubImage3 = document.getElementById('sub-image-3-carousel');
 
           if (carouselSubImage3?.className.includes('active')) {
-            carouselSubImage3.className = 'carousel-item';
             if (this.travelReport.reportSubImage4) {
+              carouselSubImage3.className = 'carousel-item';
               const carouselSubImage4 = document.getElementById('sub-image-4-carousel');
               if (carouselSubImage4) {
                 carouselSubImage4.className = 'carousel-item active';
@@ -109,8 +109,8 @@ export class TravelReportDetailComponent implements OnInit {
           const carouselSubImage4 = document.getElementById('sub-image-4-carousel');
 
           if (carouselSubImage4?.className.includes('active')) {
-            carouselSubImage4.className = 'carousel-item';
             if (this.travelReport.reportSubImage5) {
+              carouselSubImage4.className = 'carousel-item';
               const carouselSubImage5 = document.getElementById('sub-image-5-carousel');
               if (carouselSubImage5) {
                 carouselSubImage5.className = 'carousel-item active';
@@ -124,8 +124,8 @@ export class TravelReportDetailComponent implements OnInit {
           const carouselSubImage5 = document.getElementById('sub-image-5-carousel');
 
           if (carouselSubImage5?.className.includes('active')) {
-            carouselSubImage5.className = 'carousel-item';
             if (this.travelReport.reportSubImage6) {
+              carouselSubImage5.className = 'carousel-item';
               const carouselSubImage6 = document.getElementById('sub-image-6-carousel');
               if (carouselSubImage6) {
                 carouselSubImage6.className = 'carousel-item active';

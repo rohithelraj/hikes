@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="EventPlanHeading">
-    <span jhiTranslate="hikesApp.eventPlan.home.title">Event Plans</span>
+    <span>Hikes</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
@@ -16,7 +16,7 @@
         [routerLink]="['/event-plan/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="hikesApp.eventPlan.home.createLabel"> Create a new Event Plan </span>
+        <span jhiTranslate="hikesApp.eventPlan.home.createLabel"> Create a new Hike </span>
       </button>
     </div>
   </h2>
@@ -26,7 +26,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="eventPlans?.length === 0">
-    <span jhiTranslate="hikesApp.eventPlan.home.notFound">No Event Plans found</span>
+    <span jhiTranslate="hikesApp.eventPlan.home.notFound">No Hikes found</span>
   </div>
 
   <div class="table-responsive table-entities" id="entities" *ngIf="eventPlans && eventPlans.length > 0">
@@ -41,7 +41,7 @@
           </th>-->
           <th scope="col" jhiSortBy="eventDate">
             <div class="d-flex">
-              <span jhiTranslate="hikesApp.eventPlan.eventDate">Event Date</span>
+              <span>Date</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -65,7 +65,7 @@
           </th>-->
           <th scope="col" jhiSortBy="eventNAme">
             <div class="d-flex">
-              <span jhiTranslate="hikesApp.eventPlan.eventNAme">Event Name</span>
+              <span>Hike</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
