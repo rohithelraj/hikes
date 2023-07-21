@@ -13,7 +13,9 @@ export class EventPlanDetailComponent implements OnInit {
   eventPlan: IEventPlan | null = null;
   dangerousKomootUrl!: string;
   komootUrl!: SafeResourceUrl;
+
   constructor(protected dataUtils: DataUtils, protected activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer) {}
+
   updatekomootUrl(id: string): void {
     // Appending an ID to a YouTube URL is safe.
     // Always make sure to construct SafeValue objects as
@@ -22,6 +24,7 @@ export class EventPlanDetailComponent implements OnInit {
     this.dangerousKomootUrl = 'https://www.komoot.de/tour/' + id + '/embed?profile=1';
     this.komootUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.dangerousKomootUrl);
   }
+
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ eventPlan }) => {
       this.eventPlan = eventPlan;
@@ -41,86 +44,100 @@ export class EventPlanDetailComponent implements OnInit {
     window.history.back();
   }
 
-  chooseSubImageTab(s: string) {
+  chooseSubImageTab(s: string): void {
     this.removeSubImageTabClasses();
-    let tab = document.getElementById('home-tab-sub-image-' + s);
-    // @ts-ignore
-    tab.className = 'nav-link active';
-    let content = document.getElementById('home-sub-image-content-' + s);
-    // @ts-ignore
-    content.className = 'tab-pane fade show active';
-  }
-  private removeSubImageTabClasses() {
-    for (let i = 1; i < 3; i++) {
-      let tab = document.getElementById('home-tab-sub-image-' + i);
-      // @ts-ignore
-      tab.className = 'nav-link';
-      let content = document.getElementById('home-sub-image-content-' + i);
-      // @ts-ignore
-      content.className = 'tab-pane fade';
+    const tab = document.getElementById('home-tab-sub-image-' + s);
+    if (tab) {
+      tab.className = 'nav-link active';
+    }
+
+    const content = document.getElementById('home-sub-image-content-' + s);
+    if (content) {
+      content.className = 'tab-pane fade show active';
     }
   }
-  carouselNext() {
+  carouselNext(): void {
+    // eslint-disable-next-line
     switchCarousel: {
       if (this.eventPlan?.hikeMainImage) {
-        let carouselMainImage = document.getElementById('main-image-carousel');
-        // @ts-ignore
-        if (carouselMainImage.className.includes('active')) {
-          // @ts-ignore
+        const carouselMainImage = document.getElementById('main-image-carousel');
+
+        if (carouselMainImage?.className.includes('active')) {
           carouselMainImage.className = 'carousel-item';
-          if (this.eventPlan?.hikeHighlightImage1) {
-            let carouselSubImage1 = document.getElementById('sub-image-1-carousel');
-            // @ts-ignore
-            carouselSubImage1.className = 'carousel-item active';
-            break switchCarousel;
+          if (this.eventPlan.hikeHighlightImage1) {
+            const carouselSubImage1 = document.getElementById('sub-image-1-carousel');
+            if (carouselSubImage1) {
+              carouselSubImage1.className = 'carousel-item active';
+              // eslint-disable-next-line
+              break switchCarousel;
+            }
           }
         }
       }
       if (this.eventPlan?.hikeHighlightImage1) {
-        let carouselSubImage1 = document.getElementById('sub-image-1-carousel');
-        // @ts-ignore
-        if (carouselSubImage1.className.includes('active')) {
-          // @ts-ignore
+        const carouselSubImage1 = document.getElementById('sub-image-1-carousel');
+
+        if (carouselSubImage1?.className.includes('active')) {
           carouselSubImage1.className = 'carousel-item';
-          if (this.eventPlan?.hikeHighlightImage2) {
-            let carouselSubImage2 = document.getElementById('sub-image-2-carousel');
-            // @ts-ignore
-            carouselSubImage2.className = 'carousel-item active';
-            break switchCarousel;
+          if (this.eventPlan.hikeHighlightImage2) {
+            const carouselSubImage2 = document.getElementById('sub-image-2-carousel');
+            if (carouselSubImage2) {
+              carouselSubImage2.className = 'carousel-item active';
+              // eslint-disable-next-line
+              break switchCarousel;
+            }
           }
         }
       }
     }
   }
-  carouselPrevious() {
+
+  carouselPrevious(): void {
+    // eslint-disable-next-line
     switchCarousel: {
       if (this.eventPlan?.hikeHighlightImage1) {
-        let carouselSubImage1 = document.getElementById('sub-image-1-carousel');
-        // @ts-ignore
-        if (carouselSubImage1.className.includes('active')) {
-          // @ts-ignore
+        const carouselSubImage1 = document.getElementById('sub-image-1-carousel');
+
+        if (carouselSubImage1?.className.includes('active')) {
           carouselSubImage1.className = 'carousel-item';
-          if (this.eventPlan?.hikeMainImage) {
-            let carouselMainImage = document.getElementById('main-image-carousel');
-            // @ts-ignore
-            carouselMainImage.className = 'carousel-item active';
-            break switchCarousel;
+          if (this.eventPlan.hikeMainImage) {
+            const carouselMainImage = document.getElementById('main-image-carousel');
+            if (carouselMainImage) {
+              carouselMainImage.className = 'carousel-item active';
+              // eslint-disable-next-line
+              break switchCarousel;
+            }
           }
         }
       }
       if (this.eventPlan?.hikeHighlightImage2) {
-        let carouselSubImage2 = document.getElementById('sub-image-2-carousel');
-        // @ts-ignore
-        if (carouselSubImage2.className.includes('active')) {
-          // @ts-ignore
+        const carouselSubImage2 = document.getElementById('sub-image-2-carousel');
+
+        if (carouselSubImage2?.className.includes('active')) {
           carouselSubImage2.className = 'carousel-item';
-          if (this.eventPlan?.hikeHighlightImage1) {
-            let carouselSubImage1 = document.getElementById('sub-image-1-carousel');
-            // @ts-ignore
-            carouselSubImage1.className = 'carousel-item active';
-            break switchCarousel;
+          if (this.eventPlan.hikeHighlightImage1) {
+            const carouselSubImage1 = document.getElementById('sub-image-1-carousel');
+            if (carouselSubImage1) {
+              carouselSubImage1.className = 'carousel-item active';
+              // eslint-disable-next-line
+              break switchCarousel;
+            }
           }
         }
+      }
+    }
+  }
+  private removeSubImageTabClasses(): void {
+    for (let i = 1; i < 3; i++) {
+      // eslint-disable-next-line
+      const tab = document.getElementById('home-tab-sub-image-' + i);
+      if (tab) {
+        tab.className = 'nav-link';
+      }
+      // eslint-disable-next-line
+      const content = document.getElementById('home-sub-image-content-' + i);
+      if (content) {
+        content.className = 'tab-pane fade';
       }
     }
   }

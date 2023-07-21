@@ -76,6 +76,7 @@ export class TripUpdateComponent implements OnInit {
       ['insertImage', 'insertVideo'],
     ],
   };
+
   constructor(
     protected dataUtils: DataUtils,
     protected eventManager: EventManager,
@@ -105,7 +106,12 @@ export class TripUpdateComponent implements OnInit {
   setFileData(event: Event, field: string, isImage: boolean): void {
     this.dataUtils.loadFileToForm(event, this.editForm, field, isImage).subscribe({
       error: (err: FileLoadError) =>
-        this.eventManager.broadcast(new EventWithContent<AlertError>('hikesApp.error', { ...err, key: 'error.file.' + err.key })),
+        this.eventManager.broadcast(
+          new EventWithContent<AlertError>('hikesApp.error', {
+            ...err,
+            key: 'error.file.' + err.key,
+          })
+        ),
     });
   }
 
@@ -132,7 +138,18 @@ export class TripUpdateComponent implements OnInit {
       this.subscribeToSaveResponse(this.tripService.create(trip));
     }
   }
-
+  navigateTo(elementId: string, breadcrumbId: string): void {
+    this.hideAllForms();
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.className = 'list-group-item d-flex justify-content-between align-items-start';
+    }
+    const breadcrumb = document.getElementById(breadcrumbId);
+    if (breadcrumb) {
+      breadcrumb.className = 'breadcrumb-item active';
+      breadcrumb.ariaCurrent = 'page';
+    }
+  }
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ITrip>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
@@ -145,7 +162,7 @@ export class TripUpdateComponent implements OnInit {
   }
 
   protected onSaveError(): void {
-    // Api for inheritance.
+    this.isSaving = false; // Api for inheritance.
   }
 
   protected onSaveFinalize(): void {
@@ -157,114 +174,126 @@ export class TripUpdateComponent implements OnInit {
     this.tripFormService.resetForm(this.editForm, trip);
   }
 
-  navigateTo(elementId: string, breadcrumbId: string) {
-    this.hideAllForms();
-    let element = document.getElementById(elementId);
-    // @ts-ignore
-    element.className = 'list-group-item d-flex justify-content-between align-items-start';
-    let breadcrumb = document.getElementById(breadcrumbId);
-    // @ts-ignore
-    breadcrumb.className = 'breadcrumb-item active';
-    // @ts-ignore
-    breadcrumb.ariaCurrent = 'page';
-  }
-  private hideAllForms() {
-    let descriptionElement = document.getElementById('description-details');
-    // @ts-ignore
-    descriptionElement.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
-    let highlight1Element = document.getElementById('highlight-1-details');
-    // @ts-ignore
-    highlight1Element.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
-    let highlight2Element = document.getElementById('highlight-2-details');
-    // @ts-ignore
-    highlight2Element.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
-    let highlight3Element = document.getElementById('highlight-3-details');
-    // @ts-ignore
-    highlight3Element.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
-    let highlight4Element = document.getElementById('highlight-4-details');
-    // @ts-ignore
-    highlight4Element.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
-    let highlight5Element = document.getElementById('highlight-5-details');
-    // @ts-ignore
-    highlight5Element.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
-    let highlight6Element = document.getElementById('highlight-6-details');
-    // @ts-ignore
-    highlight6Element.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
-    let accomodationDetailsElement = document.getElementById('accomodation-details');
-    // @ts-ignore
-    accomodationDetailsElement.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
-    let costsDetailsElement = document.getElementById('costs-details');
-    // @ts-ignore
-    costsDetailsElement.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
-    let transportationDetailsElement = document.getElementById('transportation-details');
-    // @ts-ignore
-    transportationDetailsElement.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
-    let relatedHikesDetailsElement = document.getElementById('related-hikes-details');
-    // @ts-ignore
-    relatedHikesDetailsElement.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
-    let basicElement = document.getElementById('basic-details');
-    // @ts-ignore
-    basicElement.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+  private hideAllForms(): void {
+    const descriptionElement = document.getElementById('description-details');
+    if (descriptionElement) {
+      descriptionElement.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    }
 
-    let descriptionBreadcrumb = document.getElementById('description');
-    // @ts-ignore
-    descriptionBreadcrumb.className = 'breadcrumb-item';
-    // @ts-ignore
-    descriptionBreadcrumb.ariaCurrent = '';
-    let highlight1Breadcrumb = document.getElementById('highlight-1');
-    // @ts-ignore
-    highlight1Breadcrumb.className = 'breadcrumb-item';
-    // @ts-ignore
-    highlight1Breadcrumb.ariaCurrent = '';
-    let highlight2Breadcrumb = document.getElementById('highlight-2');
-    // @ts-ignore
-    highlight2Breadcrumb.className = 'breadcrumb-item';
-    // @ts-ignore
-    highlight2Breadcrumb.ariaCurrent = '';
-    let highlight3Breadcrumb = document.getElementById('highlight-3');
-    // @ts-ignore
-    highlight3Breadcrumb.className = 'breadcrumb-item';
-    // @ts-ignore
-    highlight3Breadcrumb.ariaCurrent = '';
-    let highlight4Breadcrumb = document.getElementById('highlight-4');
-    // @ts-ignore
-    highlight4Breadcrumb.className = 'breadcrumb-item';
-    // @ts-ignore
-    highlight4Breadcrumb.ariaCurrent = '';
-    let highlight5Breadcrumb = document.getElementById('highlight-5');
-    // @ts-ignore
-    highlight5Breadcrumb.className = 'breadcrumb-item';
-    // @ts-ignore
-    highlight5Breadcrumb.ariaCurrent = '';
-    let highlight6Breadcrumb = document.getElementById('highlight-6');
-    // @ts-ignore
-    highlight6Breadcrumb.className = 'breadcrumb-item';
-    // @ts-ignore
-    highlight6Breadcrumb.ariaCurrent = '';
-    let transportationBreadcrumb = document.getElementById('transportation');
-    // @ts-ignore
-    transportationBreadcrumb.className = 'breadcrumb-item';
-    // @ts-ignore
-    transportationBreadcrumb.ariaCurrent = '';
-    let costsBreadcrumb = document.getElementById('costs');
-    // @ts-ignore
-    costsBreadcrumb.className = 'breadcrumb-item';
-    // @ts-ignore
-    costsBreadcrumb.ariaCurrent = '';
-    let accomodationBreadcrumb = document.getElementById('accomodation');
-    // @ts-ignore
-    accomodationBreadcrumb.className = 'breadcrumb-item';
-    // @ts-ignore
-    accomodationBreadcrumb.ariaCurrent = '';
-    let hikesDetailsBreadcrumb = document.getElementById('related-hikes');
-    // @ts-ignore
-    hikesDetailsBreadcrumb.className = 'breadcrumb-item';
-    // @ts-ignore
-    hikesDetailsBreadcrumb.ariaCurrent = '';
-    let basicBreadcrumb = document.getElementById('basic');
-    // @ts-ignore
-    basicBreadcrumb.className = 'breadcrumb-item';
-    // @ts-ignore
-    basicBreadcrumb.ariaCurrent = '';
+    const highlight1Element = document.getElementById('highlight-1-details');
+    if (highlight1Element) {
+      highlight1Element.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    }
+
+    const highlight2Element = document.getElementById('highlight-2-details');
+    if (highlight2Element) {
+      highlight2Element.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    }
+
+    const highlight3Element = document.getElementById('highlight-3-details');
+    if (highlight3Element) {
+      highlight3Element.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    }
+
+    const highlight4Element = document.getElementById('highlight-4-details');
+    if (highlight4Element) {
+      highlight4Element.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    }
+
+    const highlight5Element = document.getElementById('highlight-5-details');
+    if (highlight5Element) {
+      highlight5Element.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    }
+
+    const highlight6Element = document.getElementById('highlight-6-details');
+    if (highlight6Element) {
+      highlight6Element.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    }
+
+    const accomodationDetailsElement = document.getElementById('accomodation-details');
+    if (accomodationDetailsElement) {
+      accomodationDetailsElement.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    }
+
+    const costsDetailsElement = document.getElementById('costs-details');
+    if (costsDetailsElement) {
+      costsDetailsElement.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    }
+
+    const transportationDetailsElement = document.getElementById('transportation-details');
+    if (transportationDetailsElement) {
+      transportationDetailsElement.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    }
+
+    const relatedHikesDetailsElement = document.getElementById('related-hikes-details');
+    if (relatedHikesDetailsElement) {
+      relatedHikesDetailsElement.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    }
+
+    const basicElement = document.getElementById('basic-details');
+    if (basicElement) {
+      basicElement.className = 'list-group-item d-flex justify-content-between align-items-start hidden';
+    }
+
+    const descriptionBreadcrumb = document.getElementById('description');
+    if (descriptionBreadcrumb) {
+      descriptionBreadcrumb.className = 'breadcrumb-item';
+      descriptionBreadcrumb.ariaCurrent = '';
+    }
+    const highlight1Breadcrumb = document.getElementById('highlight-1');
+    if (highlight1Breadcrumb) {
+      highlight1Breadcrumb.className = 'breadcrumb-item';
+      highlight1Breadcrumb.ariaCurrent = '';
+    }
+    const highlight2Breadcrumb = document.getElementById('highlight-2');
+    if (highlight2Breadcrumb) {
+      highlight2Breadcrumb.className = 'breadcrumb-item';
+      highlight2Breadcrumb.ariaCurrent = '';
+    }
+    const highlight3Breadcrumb = document.getElementById('highlight-3');
+    if (highlight3Breadcrumb) {
+      highlight3Breadcrumb.className = 'breadcrumb-item';
+      highlight3Breadcrumb.ariaCurrent = '';
+    }
+    const highlight4Breadcrumb = document.getElementById('highlight-4');
+    if (highlight4Breadcrumb) {
+      highlight4Breadcrumb.className = 'breadcrumb-item';
+      highlight4Breadcrumb.ariaCurrent = '';
+    }
+    const highlight5Breadcrumb = document.getElementById('highlight-5');
+    if (highlight5Breadcrumb) {
+      highlight5Breadcrumb.className = 'breadcrumb-item';
+      highlight5Breadcrumb.ariaCurrent = '';
+    }
+    const highlight6Breadcrumb = document.getElementById('highlight-6');
+    if (highlight6Breadcrumb) {
+      highlight6Breadcrumb.className = 'breadcrumb-item';
+      highlight6Breadcrumb.ariaCurrent = '';
+    }
+    const transportationBreadcrumb = document.getElementById('transportation');
+    if (transportationBreadcrumb) {
+      transportationBreadcrumb.className = 'breadcrumb-item';
+      transportationBreadcrumb.ariaCurrent = '';
+    }
+    const costsBreadcrumb = document.getElementById('costs');
+    if (costsBreadcrumb) {
+      costsBreadcrumb.className = 'breadcrumb-item';
+      costsBreadcrumb.ariaCurrent = '';
+    }
+    const accomodationBreadcrumb = document.getElementById('accomodation');
+    if (accomodationBreadcrumb) {
+      accomodationBreadcrumb.className = 'breadcrumb-item';
+      accomodationBreadcrumb.ariaCurrent = '';
+    }
+    const hikesDetailsBreadcrumb = document.getElementById('related-hikes');
+    if (hikesDetailsBreadcrumb) {
+      hikesDetailsBreadcrumb.className = 'breadcrumb-item';
+      hikesDetailsBreadcrumb.ariaCurrent = '';
+    }
+    const basicBreadcrumb = document.getElementById('basic');
+    if (basicBreadcrumb) {
+      basicBreadcrumb.className = 'breadcrumb-item';
+      basicBreadcrumb.ariaCurrent = '';
+    }
   }
 }
